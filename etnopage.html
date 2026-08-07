@@ -3,24 +3,23 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ETNOSATEK · Nazwa Ananda Devina</title>
+    <title>ETNOSATEK · Full Zoom Scroll</title>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
     <style>
-        /* ===== OKLCH & WARNA DASAR ===== */
+        /* ===== OKLCH PALET ===== */
         :root {
-            --marun-gelap: oklch(0.22 0.08 25); /* Warna latar menyatu dengan bawah gambar */
+            --marun-gelap: oklch(0.22 0.08 25); 
             --emas-keraton: oklch(0.75 0.15 85);
             --putih-krem: oklch(0.98 0.02 60);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
-        /* Background utama diubah jadi Marun Gelap agar putih hilang! */
         body {
             font-family: 'Nunito', sans-serif;
-            background: var(--marun-gelap);
+            background: var(--marun-gelap); /* Pengaman, tapi gambar akan nutup ini */
             height: 100vh;
             display: flex;
             flex-direction: column;
@@ -101,7 +100,7 @@
             display: flex;
             flex-direction: column;
             scroll-behavior: smooth;
-            background: transparent; /* Bikin transparan agar warna body yang tampil */
+            background: transparent;
         }
         .halaman { display: none; width: 100%; animation: fadeNaik 0.4s ease-out; }
         .halaman.active { display: block; }
@@ -111,21 +110,27 @@
             100% { opacity: 1; transform: translateY(0); }
         }
 
-        /* ===== HOME (PAKAI TAG IMG) ===== */
-        .img-9-16 {
-            display: block;
+        /* ===== HOME: FULL BLEED ZOOM & SCROLL ===== */
+        .img-wrapper-zoom {
             width: 100%;
-            height: auto; /* Tetap proporsional 9:16 */
-            object-fit: contain;
-            /* TRIK AGAR BISA SCROLL: Tambah ruang kosong di bawah gambar */
-            margin-bottom: 40vh; 
+            /* Tinggi 140% layar -> Gambar full mengisi vertikal, dan bisa discroll */
+            height: 140vh; 
+            overflow: hidden;
+        }
+        .img-wrapper-zoom img {
+            width: 100%;
+            height: 100%;
+            /* Ini akan memperbesar gambar agar mengisi penuh tanpa ruang kosong */
+            object-fit: cover;
+            object-position: center top;
+            display: block;
         }
 
         /* ===== HALAMAN LAIN ===== */
         .hero-other {
             position: relative;
             width: 100%;
-            min-height: 90vh; /* Agar tinggi penuh */
+            min-height: 90vh;
             background: var(--marun-gelap);
             display: flex;
             flex-direction: column;
@@ -145,7 +150,7 @@
             .nav-dropdown button { padding: 10px 18px; font-size: 0.9rem; }
             .hero-other h2 { font-size: 1.8rem; }
             .hero-other p { font-size: 1rem; }
-            .img-9-16 { margin-bottom: 30vh; } /* Di HP ruang scroll tetap ada */
+            .img-wrapper-zoom { height: 145vh; } /* Di HP makin panjang scroll-nya */
         }
     </style>
 </head>
@@ -164,9 +169,11 @@
     <!-- ===== PANGGUNG ===== -->
     <main class="panggung">
 
-        <!-- HOME (9:16, pakai tag img murni & bisa discroll) -->
+        <!-- HOME (Zoom Penuh + Scroll) -->
         <section id="home" class="halaman active">
-            <img src="page.png" alt="Home ETNOSATEK" class="img-9-16" />
+            <div class="img-wrapper-zoom">
+                <img src="page.png" alt="Home ETNOSATEK" />
+            </div>
         </section>
 
         <!-- PROFILE -->
@@ -196,7 +203,6 @@
     </main>
 
     <script>
-        // Hamburger Logic
         const btn = document.getElementById('hamburgerBtn');
         const menu = document.getElementById('navDropdown');
 
@@ -205,7 +211,6 @@
             menu.classList.toggle('open');
         });
 
-        // Navigasi Halaman
         const menuButtons = document.querySelectorAll('.nav-dropdown button');
         const pages = document.querySelectorAll('.halaman');
 
