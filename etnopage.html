@@ -23,7 +23,7 @@
             height: 100vh;
             display: flex;
             flex-direction: column;
-            overflow: hidden; /* Scroll hanya di dalam panggung */
+            overflow: hidden; 
         }
 
         /* ===== FLOATING HAMBURGER ===== */
@@ -110,16 +110,12 @@
             100% { opacity: 1; transform: translateY(0); }
         }
 
-        /* ===== HOME (9:16 BACKGROUND SCROLL) ===== */
-        .scroll-9-16 {
+        /* ===== HOME (PAKAI TAG IMG 9:16) ===== */
+        .img-9-16 {
+            display: block;
             width: 100%;
-            /* Rumus: tinggi = lebar x (16/9) agar proporsi 9:16 terjaga */
-            min-height: calc(100vw * (16 / 9));
-            background-image: url('assets/page.png');
-            background-size: cover;
-            background-position: center top;
-            background-repeat: no-repeat;
-            /* Karena min-height > viewport, scroll otomatis muncul */
+            height: auto; /* Ini kunci! Tinggi otomatis mengikuti rasio 9:16 */
+            object-fit: contain; /* Menjaga gambar tidak gepeng */
         }
 
         /* ===== HALAMAN LAIN (Profile & Cara Main) ===== */
@@ -166,9 +162,10 @@
     <!-- ===== PANGGUNG ===== -->
     <main class="panggung">
 
-        <!-- HOME (9:16, bisa di-scroll vertikal) -->
+        <!-- HOME (9:16, pakai tag img murni) -->
         <section id="home" class="halaman active">
-            <div class="scroll-9-16"></div>
+            <!-- Path ke gambar sesuai lokasi GitHub Anda -->
+            <img src="page.png" alt="Home ETNOSATEK" class="img-9-16" />
         </section>
 
         <!-- PROFILE -->
