@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ETNOSATEK · Full Zoom Scroll</title>
+    <title>ETNOSATEK · Scroll 9:16</title>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
     <style>
         /* ===== OKLCH PALET ===== */
         :root {
-            --marun-gelap: oklch(0.22 0.08 25); 
+            --marun-gelap: oklch(0.22 0.08 25); /* Persis warna bawah foto Anda */
             --emas-keraton: oklch(0.75 0.15 85);
             --putih-krem: oklch(0.98 0.02 60);
         }
@@ -19,7 +19,7 @@
         
         body {
             font-family: 'Nunito', sans-serif;
-            background: var(--marun-gelap); /* Pengaman, tapi gambar akan nutup ini */
+            background: var(--marun-gelap); /* Memastikan tidak ada putih */
             height: 100vh;
             display: flex;
             flex-direction: column;
@@ -100,7 +100,7 @@
             display: flex;
             flex-direction: column;
             scroll-behavior: smooth;
-            background: transparent;
+            background: var(--marun-gelap); /* Menyamakan warna */
         }
         .halaman { display: none; width: 100%; animation: fadeNaik 0.4s ease-out; }
         .halaman.active { display: block; }
@@ -110,20 +110,19 @@
             100% { opacity: 1; transform: translateY(0); }
         }
 
-        /* ===== HOME: FULL BLEED ZOOM & SCROLL ===== */
-        .img-wrapper-zoom {
+        /* ===== HOME: TANPA ZOOM, SCROLL BISA DIGILIR ===== */
+        .img-wrapper-clean {
             width: 100%;
-            /* Tinggi 140% layar -> Gambar full mengisi vertikal, dan bisa discroll */
-            height: 140vh; 
-            overflow: hidden;
+            background: var(--marun-gelap); 
+            text-align: center;
+            /* Memberikan ruang scroll di bawah gambar agar bisa digilir ke bawah */
+            padding-bottom: 30vh;
         }
-        .img-wrapper-zoom img {
-            width: 100%;
-            height: 100%;
-            /* Ini akan memperbesar gambar agar mengisi penuh tanpa ruang kosong */
-            object-fit: cover;
-            object-position: center top;
+        .img-wrapper-clean img {
             display: block;
+            width: 100%;
+            height: auto;      /* Biarkan proporsi asli 9:16 */
+            object-fit: contain; /* Mencegah zoom/cover yang bikin teks raib */
         }
 
         /* ===== HALAMAN LAIN ===== */
@@ -150,7 +149,7 @@
             .nav-dropdown button { padding: 10px 18px; font-size: 0.9rem; }
             .hero-other h2 { font-size: 1.8rem; }
             .hero-other p { font-size: 1rem; }
-            .img-wrapper-zoom { height: 145vh; } /* Di HP makin panjang scroll-nya */
+            .img-wrapper-clean { padding-bottom: 40vh; } /* Di HP scroll makin panjang */
         }
     </style>
 </head>
@@ -169,9 +168,9 @@
     <!-- ===== PANGGUNG ===== -->
     <main class="panggung">
 
-        <!-- HOME (Zoom Penuh + Scroll) -->
+        <!-- HOME (Full, Tidak Zoom, Ada Scroll) -->
         <section id="home" class="halaman active">
-            <div class="img-wrapper-zoom">
+            <div class="img-wrapper-clean">
                 <img src="page.png" alt="Home ETNOSATEK" />
             </div>
         </section>
