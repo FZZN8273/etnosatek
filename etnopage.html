@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ETNOSATEK · Footer Melekat</title>
+    <title>ETNOSATEK · Flat No Solid Blue</title>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
@@ -17,7 +17,7 @@
             --border-hitam-tipis: oklch(0 0 0 / 0.2);
             --border-kuning: oklch(0.78 0.18 85);
             --border-krem: oklch(0.92 0.06 80);
-            --cokelat-batik: oklch(0.35 0.12 25); /* Pengaman bawah footer */
+            --cokelat-batik: oklch(0.35 0.12 25);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -32,13 +32,12 @@
             overflow-y: auto;
             padding: 16px;
 
-            /* ===== BACKGROUND FLAT (60% Biru, 25% Krem, 15% Putih) ===== */
-            background-color: var(--biru-base);
+            /* ===== BACKGROUND FLAT TANPA KOTAK BIRU SOLID ===== */
+            /* Warna dasar putih 15% + Blob Biru 60% + Blob Krem 25% */
+            background-color: var(--putih-base);
             background-image: 
-                /* Bentuk flat krem 25% di atas */
-                radial-gradient(circle at 90% 10%, var(--krem-base) 0%, var(--krem-base) 25%, transparent 30%),
-                /* Bentuk flat putih 15% di bawah */
-                radial-gradient(circle at 10% 90%, var(--putih-base) 0%, var(--putih-base) 15%, transparent 20%);
+                radial-gradient(ellipse at 15% 85%, var(--biru-base) 0%, var(--biru-base) 50%, transparent 70%),
+                radial-gradient(ellipse at 85% 15%, var(--krem-base) 0%, var(--krem-base) 35%, transparent 55%);
             background-repeat: no-repeat;
             background-size: 100% 100%;
         }
@@ -47,7 +46,7 @@
         .container-website {
             width: 100%;
             max-width: 900px;
-            padding: 20px 20px 0 20px; /* Hilangkan padding bawah agar footer melekat */
+            padding: 20px 20px 0 20px;
             display: flex;
             flex-direction: column;
             position: relative;
@@ -120,8 +119,7 @@
         .body-img   { border: 1px solid var(--border-kuning); }
         .footer-img { 
             border: 1px solid var(--border-krem);
-            /* Pengaman jika PNG footer transparan agar tidak tembus warna biru */
-            background: var(--cokelat-batik);
+            background: var(--cokelat-batik); /* Aman untuk footer PNG transparan */
         }
 
         /* ===== DIVIDER (Garis Putus-Putus) ===== */
@@ -129,7 +127,7 @@
             width: 100%;
             display: flex; flex-direction: column; align-items: center;
             gap: 2.5vh;
-            margin: 4vh 0; /* Jarak scroll yang rapi antar konten */
+            margin: 4vh 0; 
         }
         .dashed-line {
             width: 70%; border-top: 2px dashed var(--border-kuning); opacity: 0.5;
@@ -172,7 +170,7 @@
     <!-- ===== KONTAINER UTAMA ===== -->
     <main class="container-website">
 
-        <!-- ===== WRAPPER HOME (Agar Navigasi mudah) ===== -->
+        <!-- ===== WRAPPER HOME ===== -->
         <div id="home" class="home-wrapper">
             
             <!-- HEADER page1.png -->
@@ -201,7 +199,7 @@
                 <div class="dashed-line"></div>
             </div>
 
-            <!-- FOOTER page3.png (MENEMPEL PALING BAWAH!) -->
+            <!-- FOOTER page3.png -->
             <div class="img-section footer-img">
                 <img src="page3.png" alt="Footer ETNOSATEK" />
             </div>
@@ -241,12 +239,12 @@
                 const targetId = this.getAttribute('data-target');
 
                 if (targetId === 'home') {
-                    homeWrapper.style.display = 'flex'; // Tampilkan Home
-                    halamanLain.forEach(page => page.classList.remove('active')); // Sembunyikan halaman lain
-                } else {
-                    homeWrapper.style.display = 'none'; // Sembunyikan Home
+                    homeWrapper.style.display = 'flex';
                     halamanLain.forEach(page => page.classList.remove('active'));
-                    document.getElementById(targetId).classList.add('active'); // Tampilkan halaman pilihan
+                } else {
+                    homeWrapper.style.display = 'none';
+                    halamanLain.forEach(page => page.classList.remove('active'));
+                    document.getElementById(targetId).classList.add('active');
                 }
 
                 menu.classList.remove('open');
