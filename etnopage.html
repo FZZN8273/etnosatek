@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ETNOSATEK · Flat & Scroll</title>
+    <title>ETNOSATEK · Footer Melekat</title>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
@@ -11,21 +11,20 @@
         /* ===== OKLCH PALET ===== */
         :root {
             --biru-base: oklch(0.45 0.12 240); 
-            --putih-base: oklch(1 0 0);        
             --krem-base: oklch(0.88 0.08 80);  
+            --putih-base: oklch(1 0 0);        
 
             --border-hitam-tipis: oklch(0 0 0 / 0.2);
             --border-kuning: oklch(0.78 0.18 85);
             --border-krem: oklch(0.92 0.06 80);
-
-            --putih-beras: oklch(0.99 0.01 80);
+            --cokelat-batik: oklch(0.35 0.12 25); /* Pengaman bawah footer */
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Nunito', sans-serif;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -33,25 +32,24 @@
             overflow-y: auto;
             padding: 16px;
 
-            /* Background Flat (60% Biru, 25% Krem, 15% Putih) */
+            /* ===== BACKGROUND FLAT (60% Biru, 25% Krem, 15% Putih) ===== */
             background-color: var(--biru-base);
             background-image: 
-                radial-gradient(ellipse at 85% 10%, var(--krem-base) 25%, transparent 50%),
-                radial-gradient(ellipse at 10% 90%, var(--putih-base) 20%, transparent 45%),
-                radial-gradient(circle at 70% 80%, oklch(0.2 0.1 0) 2px, transparent 2px),
-                radial-gradient(circle at 20% 40%, oklch(0.7 0.2 350) 3px, transparent 3px);
-            background-size: 100% 100%, 100% 100%, 40px 40px, 60px 60px;
+                /* Bentuk flat krem 25% di atas */
+                radial-gradient(circle at 90% 10%, var(--krem-base) 0%, var(--krem-base) 25%, transparent 30%),
+                /* Bentuk flat putih 15% di bawah */
+                radial-gradient(circle at 10% 90%, var(--putih-base) 0%, var(--putih-base) 15%, transparent 20%);
             background-repeat: no-repeat;
+            background-size: 100% 100%;
         }
 
-        /* ===== KONTAINER UTAMA (SUDAH BERSIH, TANPA BACKGROUND PUTIH TRANSPARAN) ===== */
+        /* ===== KONTAINER UTAMA ===== */
         .container-website {
             width: 100%;
             max-width: 900px;
-            padding: 30px;
+            padding: 20px 20px 0 20px; /* Hilangkan padding bawah agar footer melekat */
             display: flex;
             flex-direction: column;
-            gap: 6vh; /* Jarak scroll */
             position: relative;
         }
 
@@ -63,7 +61,7 @@
             z-index: 999;
         }
         .hamburger {
-            background: var(--putih-beras);
+            background: var(--putih-base);
             border: 1px solid oklch(0 0 0 / 0.1);
             box-shadow: 0 4px 12px oklch(0 0 0 / 0.08);
             border-radius: 50%;
@@ -81,7 +79,7 @@
             position: absolute;
             top: 58px;
             right: 0;
-            background: var(--putih-beras);
+            background: var(--putih-base);
             border-radius: 14px;
             padding: 10px 0;
             min-width: 160px;
@@ -102,31 +100,36 @@
         .nav-dropdown button:hover { background: oklch(0.95 0.04 250); }
         .nav-dropdown button i { margin-right: 12px; width: 20px; }
 
-        /* ===== WRAPPER GAMBAR & DIVIDER ===== */
+        /* ===== HOME WRAPPER ===== */
         .home-wrapper {
             display: flex;
             flex-direction: column;
-            gap: 6vh;
         }
+
+        /* ===== WRAPPER GAMBAR ===== */
         .img-section {
             width: 100%;
             border-radius: 12px;
             overflow: hidden;
             line-height: 0;
-            background: var(--putih-beras);
+            background: var(--putih-base);
         }
         .img-section img { width: 100%; height: auto; display: block; }
         
         .header-img { border: 1px solid var(--border-hitam-tipis); }
         .body-img   { border: 1px solid var(--border-kuning); }
-        .footer-img { border: 1px solid var(--border-krem); }
+        .footer-img { 
+            border: 1px solid var(--border-krem);
+            /* Pengaman jika PNG footer transparan agar tidak tembus warna biru */
+            background: var(--cokelat-batik);
+        }
 
         /* ===== DIVIDER (Garis Putus-Putus) ===== */
         .divider-section {
             width: 100%;
             display: flex; flex-direction: column; align-items: center;
             gap: 2.5vh;
-            padding: 1rem 0;
+            margin: 4vh 0; /* Jarak scroll yang rapi antar konten */
         }
         .dashed-line {
             width: 70%; border-top: 2px dashed var(--border-kuning); opacity: 0.5;
@@ -135,23 +138,22 @@
         .dashed-line.large { width: 85%; }
 
         /* ===== HALAMAN LAIN (Profile & Cara Main) ===== */
-        .halaman { display: none; padding: 40px 20px; text-align: center; background: var(--putih-beras); border-radius: 20px; }
+        .halaman { display: none; padding: 40px 20px; text-align: center; background: var(--putih-base); border-radius: 20px; margin-bottom: 20px; }
         .halaman.active { display: block; }
         .hero-other h2 { color: var(--biru-base); margin-bottom: 1rem; }
         .btn-spring {
             display: inline-block; margin-top: 20px; background: var(--krem-base);
-            color: var(--putih-beras); padding: 12px 32px; border-radius: 40px;
+            color: var(--putih-base); padding: 12px 32px; border-radius: 40px;
             text-decoration: none; font-weight: 800; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
         .btn-spring:hover { transform: scale(1.05); }
 
         @media (max-width: 600px) {
             body { padding: 10px; }
-            .container-website { padding: 10px; gap: 4vh; }
+            .container-website { padding: 10px 10px 0 10px; }
             .floating-header { top: 10px; right: 10px; }
             .hamburger { width: 44px; height: 44px; font-size: 1.2rem; }
-            .divider-section { gap: 2vh; }
-            .dashed-line { width: 85%; }
+            .divider-section { margin: 3vh 0; gap: 2vh; }
         }
     </style>
 </head>
@@ -170,10 +172,10 @@
     <!-- ===== KONTAINER UTAMA ===== -->
     <main class="container-website">
 
-        <!-- ===== BUNGKUSAN HOME (Agar navigasi Home mudah muncul/sembunyi) ===== -->
+        <!-- ===== WRAPPER HOME (Agar Navigasi mudah) ===== -->
         <div id="home" class="home-wrapper">
             
-            <!-- HEADER -->
+            <!-- HEADER page1.png -->
             <div class="img-section header-img">
                 <img src="page1.png" alt="Header ETNOSATEK" />
             </div>
@@ -186,7 +188,7 @@
                 <div class="dashed-line"></div>
             </div>
 
-            <!-- BODY -->
+            <!-- BODY page2.png -->
             <div class="img-section body-img">
                 <img src="page2.png" alt="Body ETNOSATEK" />
             </div>
@@ -199,14 +201,14 @@
                 <div class="dashed-line"></div>
             </div>
 
-            <!-- FOOTER -->
+            <!-- FOOTER page3.png (MENEMPEL PALING BAWAH!) -->
             <div class="img-section footer-img">
                 <img src="page3.png" alt="Footer ETNOSATEK" />
             </div>
 
         </div>
 
-        <!-- ===== HALAMAN LAIN (Profile & Cara Main) ===== -->
+        <!-- ===== HALAMAN LAIN ===== -->
         <div id="profile" class="halaman">
             <h2>Profil Pembuat</h2>
             <p><strong>Nazwa Ananda Devina</strong><br>SMP Muhammadiyah 17 Ciputat</p>
@@ -229,7 +231,7 @@
             menu.classList.toggle('open');
         });
 
-        // === Logika Navigasi Bebas Bug ===
+        // === Logika Navigasi ===
         const menuButtons = document.querySelectorAll('.nav-dropdown button');
         const homeWrapper = document.getElementById('home');
         const halamanLain = document.querySelectorAll('.halaman');
@@ -238,23 +240,19 @@
             btn.addEventListener('click', function() {
                 const targetId = this.getAttribute('data-target');
 
-                // 1. Jika Klik Home
                 if (targetId === 'home') {
-                    homeWrapper.style.display = 'flex'; // Kembalikan tampilan Home
+                    homeWrapper.style.display = 'flex'; // Tampilkan Home
                     halamanLain.forEach(page => page.classList.remove('active')); // Sembunyikan halaman lain
-                } 
-                // 2. Jika Klik Profile / Cara Main
-                else {
+                } else {
                     homeWrapper.style.display = 'none'; // Sembunyikan Home
-                    halamanLain.forEach(page => page.classList.remove('active')); // Reset semua halaman
-                    document.getElementById(targetId).classList.add('active'); // Tampilkan halaman yang dipilih
+                    halamanLain.forEach(page => page.classList.remove('active'));
+                    document.getElementById(targetId).classList.add('active'); // Tampilkan halaman pilihan
                 }
 
-                menu.classList.remove('open'); // Tutup menu
+                menu.classList.remove('open');
             });
         });
 
-        // Klik luar untuk tutup menu
         document.addEventListener('click', (e) => {
             if (!btn.contains(e.target) && !menu.contains(e.target)) {
                 menu.classList.remove('open');
