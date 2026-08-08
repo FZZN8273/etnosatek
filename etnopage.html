@@ -2,15 +2,15 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ETNOSATEK · Scroll 9:16</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+    <title>ETNOSATEK · Full Zoom & Gesture</title>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
     <style>
         /* ===== OKLCH PALET ===== */
         :root {
-            --marun-gelap: oklch(0.22 0.08 25); /* Persis warna bawah foto Anda */
+            --marun-gelap: oklch(0.22 0.08 25); 
             --emas-keraton: oklch(0.75 0.15 85);
             --putih-krem: oklch(0.98 0.02 60);
         }
@@ -19,11 +19,24 @@
         
         body {
             font-family: 'Nunito', sans-serif;
-            background: var(--marun-gelap); /* Memastikan tidak ada putih */
+            background: var(--marun-gelap);
             height: 100vh;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden; 
+            width: 100vw;
+            overflow: hidden; /* KUNCI: HILANGKAN SCROLL TOTAL */
+            position: relative;
+        }
+
+        /* ===== GAMBAR FULL SCREEN (ZOOM COVER) ===== */
+        .full-zoom-gambar {
+            width: 100%;
+            height: 100vh;
+            display: block;
+        }
+        .full-zoom-gambar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Memenuhi layar tanpa ruang kosong, teks bisa di-zoom cubit */
+            display: block;
         }
 
         /* ===== FLOATING HAMBURGER ===== */
@@ -93,16 +106,8 @@
         }
         .nav-dropdown button i { margin-right: 12px; width: 20px; }
 
-        /* ===== PANGGUNG SCROLL ===== */
-        .panggung {
-            flex: 1;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            scroll-behavior: smooth;
-            background: var(--marun-gelap); /* Menyamakan warna */
-        }
-        .halaman { display: none; width: 100%; animation: fadeNaik 0.4s ease-out; }
+        /* ===== HALAMAN NAVIGASI ===== */
+        .halaman { display: none; width: 100%; height: 100vh; animation: fadeNaik 0.4s ease-out; }
         .halaman.active { display: block; }
 
         @keyframes fadeNaik {
@@ -110,26 +115,11 @@
             100% { opacity: 1; transform: translateY(0); }
         }
 
-        /* ===== HOME: TANPA ZOOM, SCROLL BISA DIGILIR ===== */
-        .img-wrapper-clean {
-            width: 100%;
-            background: var(--marun-gelap); 
-            text-align: center;
-            /* Memberikan ruang scroll di bawah gambar agar bisa digilir ke bawah */
-            padding-bottom: 30vh;
-        }
-        .img-wrapper-clean img {
-            display: block;
-            width: 100%;
-            height: auto;      /* Biarkan proporsi asli 9:16 */
-            object-fit: contain; /* Mencegah zoom/cover yang bikin teks raib */
-        }
-
-        /* ===== HALAMAN LAIN ===== */
+        /* ===== HALAMAN LAIN (Profile & Cara Main) ===== */
         .hero-other {
             position: relative;
             width: 100%;
-            min-height: 90vh;
+            height: 100vh;
             background: var(--marun-gelap);
             display: flex;
             flex-direction: column;
@@ -142,18 +132,58 @@
         .hero-other h2 { font-size: 3rem; color: var(--emas-keraton); margin-bottom: 16px; }
         .hero-other p { font-size: 1.2rem; max-width: 600px; line-height: 1.8; }
 
+        /* ===== UI/UX TANGAN CUBIT TRANSPARAN ===== */
+        .gesture-hint {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 50;
+            background: oklch(0 0 0 / 0.35); /* Abu-abu transparan */
+            backdrop-filter: blur(4px);
+            padding: 12px 24px;
+            border-radius: 40px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--putih-krem);
+            font-weight: 700;
+            font-size: 0.9rem;
+            pointer-events: none;
+            animation: pulseHint 2s ease-in-out infinite;
+            border: 1px solid oklch(1 0 0 / 0.2);
+            box-shadow: 0 4px 20px oklch(0 0 0 / 0.3);
+        }
+        .gesture-hint i {
+            font-size: 1.6rem;
+            color: var(--putih-krem);
+            display: inline-block;
+            transform: rotate(-10deg) scaleX(-1); /* Membalik tangan agar seperti cubit */
+        }
+        @keyframes pulseHint {
+            0% { transform: translateX(-50%) scale(1); opacity: 0.8; }
+            50% { transform: translateX(-50%) scale(1.05); opacity: 1; }
+            100% { transform: translateX(-50%) scale(1); opacity: 0.8; }
+        }
+
         @media (max-width: 600px) {
             .floating-header { padding: 16px; }
             .hamburger { font-size: 1.6rem; }
             .nav-dropdown { right: 16px; min-width: 150px; top: 70px; }
-            .nav-dropdown button { padding: 10px 18px; font-size: 0.9rem; }
             .hero-other h2 { font-size: 1.8rem; }
-            .hero-other p { font-size: 1rem; }
-            .img-wrapper-clean { padding-bottom: 40vh; } /* Di HP scroll makin panjang */
+            .gesture-hint { padding: 10px 16px; font-size: 0.8rem; bottom: 20px; }
+            .gesture-hint i { font-size: 1.2rem; }
         }
     </style>
 </head>
 <body>
+
+    <!-- ===== OVERLAY TANGAN CUBIT (Selalu di atas gambar) ===== -->
+    <div class="gesture-hint">
+        <!-- Icon tangan cubit (pinch) -->
+        <i class="fas fa-hand-paper"></i> 
+        <span>Pinch to Zoom</span>
+    </div>
 
     <!-- ===== FLOATING HEADER ===== -->
     <header class="floating-header">
@@ -165,12 +195,12 @@
         </nav>
     </header>
 
-    <!-- ===== PANGGUNG ===== -->
+    <!-- ===== PANGGUNG UTAMA ===== -->
     <main class="panggung">
 
-        <!-- HOME (Full, Tidak Zoom, Ada Scroll) -->
+        <!-- HOME (Full Zoom, Tanpa Scroll) -->
         <section id="home" class="halaman active">
-            <div class="img-wrapper-clean">
+            <div class="full-zoom-gambar">
                 <img src="page.png" alt="Home ETNOSATEK" />
             </div>
         </section>
@@ -220,7 +250,6 @@
                     page.classList.toggle('active', page.id === targetId);
                 });
                 menu.classList.remove('open');
-                document.querySelector('.panggung').scrollTop = 0;
             });
         });
 
