@@ -2,84 +2,87 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
-    <title>ETNOSATEK · Full Zoom & Gesture</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ETNOSATEK · 3 Bagian Landscape</title>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
     <style>
-        /* ===== OKLCH PALET ===== */
+        /* ===== OKLCH PALET: Biru Teknologi & Krem Nusantara ===== */
         :root {
-            --marun-gelap: oklch(0.22 0.08 25); 
-            --emas-keraton: oklch(0.75 0.15 85);
-            --putih-krem: oklch(0.98 0.02 60);
+            --biru-teknologi: oklch(0.35 0.12 240); 
+            --krem-nusantara: oklch(0.92 0.06 80);
+            --emas-aksen: oklch(0.75 0.15 85);
+            --putih-beras: oklch(0.99 0.01 80);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
             font-family: 'Nunito', sans-serif;
-            background: var(--marun-gelap);
-            height: 100vh;
-            width: 100vw;
-            overflow: hidden; /* KUNCI: HILANGKAN SCROLL TOTAL */
-            position: relative;
-        }
-
-        /* ===== GAMBAR FULL SCREEN (ZOOM COVER) ===== */
-        .full-zoom-gambar {
-            width: 100%;
-            height: 100vh;
-            display: block;
-        }
-        .full-zoom-gambar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Memenuhi layar tanpa ruang kosong, teks bisa di-zoom cubit */
-            display: block;
-        }
-
-        /* ===== FLOATING HAMBURGER ===== */
-        .floating-header {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 24px 28px;
+            /* Background Krem + Pola Titik-Titik Profesional */
+            background-color: var(--krem-nusantara);
+            background-image: radial-gradient(oklch(0 0 0 / 0.08) 1px, transparent 1px);
+            background-size: 20px 20px;
+            min-height: 100vh;
             display: flex;
-            justify-content: flex-end;
-            z-index: 100;
-            pointer-events: none;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        /* ===== KONTAINER WEBSITE ===== */
+        .container-website {
+            width: 100%;
+            max-width: 1200px; /* Agar di laptop terlihat rapi, tidak terlalu lebar */
+            background: var(--putih-beras);
+            border-radius: 32px;
+            box-shadow: 0 20px 60px oklch(0 0 0 / 0.08);
+            overflow: hidden;
+            position: relative;
+            border: 1px solid oklch(0 0 0 / 0.05);
+        }
+
+        /* ===== FLOATING HAMBURGER (Tetap di posisi kanan atas) ===== */
+        .floating-header {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
         }
         .hamburger {
-            background: transparent;
+            background: var(--biru-teknologi);
             border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            color: var(--emas-aksen);
+            font-size: 1.4rem;
             cursor: pointer;
-            color: var(--emas-keraton);
-            font-size: 2rem;
-            padding: 4px;
-            pointer-events: auto;
-            text-shadow: 0 2px 8px oklch(0 0 0 / 0.4);
-            transition: transform 0.2s;
+            box-shadow: 0 4px 16px oklch(0 0 0 / 0.2);
+            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         .hamburger:hover { transform: scale(1.1); }
 
-        /* ===== MENU DROPDOWN 3 TITIK ===== */
+        /* Dropdown Menu */
         .nav-dropdown {
-            position: absolute;
-            top: 80px;
-            right: 28px;
-            background: var(--marun-gelap);
+            margin-top: 10px;
+            background: var(--putih-beras);
             border-radius: 16px;
             padding: 12px 0;
-            min-width: 180px;
-            box-shadow: 0 12px 40px oklch(0 0 0 / 0.4);
+            min-width: 160px;
+            box-shadow: 0 8px 30px oklch(0 0 0 / 0.15);
             opacity: 0;
             visibility: hidden;
-            transform: translateY(-12px);
-            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-            border: 1px solid var(--emas-keraton);
-            pointer-events: auto;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            border: 1px solid oklch(0.8 0.02 80);
         }
         .nav-dropdown.open {
             opacity: 1;
@@ -87,105 +90,67 @@
             transform: translateY(0);
         }
         .nav-dropdown button {
-            display: block;
-            width: 100%;
-            background: transparent;
-            border: none;
-            color: var(--putih-krem);
-            padding: 12px 24px;
-            font-family: inherit;
-            font-weight: 700;
-            font-size: 1rem;
-            cursor: pointer;
-            text-align: left;
-            transition: background 0.2s, color 0.2s;
+            display: block; width: 100%;
+            background: transparent; border: none;
+            color: var(--biru-teknologi); padding: 10px 20px;
+            font-family: inherit; font-weight: 700; font-size: 0.9rem;
+            cursor: pointer; text-align: left;
+            transition: background 0.2s;
         }
         .nav-dropdown button:hover {
-            background: oklch(0.35 0.12 25);
-            color: var(--emas-keraton);
+            background: var(--krem-nusantara);
+            color: var(--emas-aksen);
         }
-        .nav-dropdown button i { margin-right: 12px; width: 20px; }
+        .nav-dropdown button i { margin-right: 10px; width: 20px; }
 
-        /* ===== HALAMAN NAVIGASI ===== */
-        .halaman { display: none; width: 100%; height: 100vh; animation: fadeNaik 0.4s ease-out; }
+        /* ===== 3 BAGIAN GAMBAR (Header, Body, Footer) ===== */
+        .img-section {
+            width: 100%;
+            display: block;
+            line-height: 0; /* Menghilangkan jarak antar gambar */
+        }
+        .img-section img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        /* ===== HALAMAN LAIN (Profile, Cara Main) di bawah footer ===== */
+        .halaman { display: none; padding: 40px; text-align: center; background: var(--putih-beras); }
         .halaman.active { display: block; }
 
-        @keyframes fadeNaik {
-            0% { opacity: 0; transform: translateY(20px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-
-        /* ===== HALAMAN LAIN (Profile & Cara Main) ===== */
-        .hero-other {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-            background: var(--marun-gelap);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: var(--putih-krem);
-            padding: 40px;
-            text-align: center;
-        }
-        .hero-other h2 { font-size: 3rem; color: var(--emas-keraton); margin-bottom: 16px; }
-        .hero-other p { font-size: 1.2rem; max-width: 600px; line-height: 1.8; }
-
-        /* ===== UI/UX TANGAN CUBIT TRANSPARAN ===== */
-        .gesture-hint {
-            position: absolute;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 50;
-            background: oklch(0 0 0 / 0.35); /* Abu-abu transparan */
-            backdrop-filter: blur(4px);
-            padding: 12px 24px;
-            border-radius: 40px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            color: var(--putih-krem);
-            font-weight: 700;
-            font-size: 0.9rem;
-            pointer-events: none;
-            animation: pulseHint 2s ease-in-out infinite;
-            border: 1px solid oklch(1 0 0 / 0.2);
-            box-shadow: 0 4px 20px oklch(0 0 0 / 0.3);
-        }
-        .gesture-hint i {
-            font-size: 1.6rem;
-            color: var(--putih-krem);
+        .hero-other h2 { font-size: 2.5rem; color: var(--biru-teknologi); margin-bottom: 16px; }
+        .hero-other p { font-size: 1.1rem; color: var(--biru-teknologi); line-height: 1.8; }
+        .btn-spring {
             display: inline-block;
-            transform: rotate(-10deg) scaleX(-1); /* Membalik tangan agar seperti cubit */
+            margin-top: 20px;
+            background: var(--emas-aksen);
+            color: var(--putih-beras);
+            padding: 12px 32px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 1.1rem;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
-        @keyframes pulseHint {
-            0% { transform: translateX(-50%) scale(1); opacity: 0.8; }
-            50% { transform: translateX(-50%) scale(1.05); opacity: 1; }
-            100% { transform: translateX(-50%) scale(1); opacity: 0.8; }
-        }
+        .btn-spring:hover { transform: scale(1.05); box-shadow: 0 8px 20px var(--emas-aksen); }
 
+        /* ===== RESPONSIVE HP ===== */
         @media (max-width: 600px) {
-            .floating-header { padding: 16px; }
-            .hamburger { font-size: 1.6rem; }
-            .nav-dropdown { right: 16px; min-width: 150px; top: 70px; }
+            body { padding: 8px; }
+            .container-website { border-radius: 16px; }
+            .floating-header { top: 10px; right: 10px; }
+            .hamburger { width: 44px; height: 44px; font-size: 1.2rem; }
+            .nav-dropdown { right: 0; min-width: 140px; }
+            .halaman { padding: 20px; }
             .hero-other h2 { font-size: 1.8rem; }
-            .gesture-hint { padding: 10px 16px; font-size: 0.8rem; bottom: 20px; }
-            .gesture-hint i { font-size: 1.2rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ===== OVERLAY TANGAN CUBIT (Selalu di atas gambar) ===== -->
-    <div class="gesture-hint">
-        <!-- Icon tangan cubit (pinch) -->
-        <i class="fas fa-hand-paper"></i> 
-        <span>Pinch to Zoom</span>
-    </div>
-
-    <!-- ===== FLOATING HEADER ===== -->
+    <!-- ===== FLOATING HAMBURGER (Kanan Atas) ===== -->
     <header class="floating-header">
         <button class="hamburger" id="hamburgerBtn"><i class="fas fa-bars"></i></button>
         <nav class="nav-dropdown" id="navDropdown">
@@ -195,43 +160,45 @@
         </nav>
     </header>
 
-    <!-- ===== PANGGUNG UTAMA ===== -->
-    <main class="panggung">
+    <!-- ===== KONTAINER UTAMA ===== -->
+    <div class="container-website">
 
-        <!-- HOME (Full Zoom, Tanpa Scroll) -->
-        <section id="home" class="halaman active">
-            <div class="full-zoom-gambar">
-                <img src="page.png" alt="Home ETNOSATEK" />
-            </div>
+        <!-- HEADER (page1.png) -->
+        <section class="img-section header">
+            <img src="page1.png" alt="Header ETNOSATEK" />
         </section>
 
-        <!-- PROFILE -->
-        <section id="profile" class="halaman">
-            <div class="hero-other">
-                <h2>Profil Pembuat</h2>
-                <p><strong>Nazwa Ananda Devina</strong><br>SMP Muhammadiyah 17 Ciputat · LKIP 2026<br><br><i>"Menghubungkan budaya Nusantara dengan teknologi modern."</i></p>
-                <div style="margin-top:20px; display:flex; gap:20px; font-size:2rem;">
-                    <i class="fab fa-instagram" style="color:var(--emas-keraton);"></i>
-                    <span style="font-size:1rem; color:var(--putih-krem);">@ananda_dev2</span>
-                </div>
-            </div>
+        <!-- BODY (page2.png) -->
+        <section class="img-section body">
+            <img src="page2.png" alt="Body Jalan ETNOSATEK" />
         </section>
 
-        <!-- CARA MAIN -->
-        <section id="howtoplay" class="halaman">
-            <div class="hero-other">
-                <h2>Cara Main ETNOSATEK</h2>
-                <p>1. Klik tombol <strong>"Mulai Petualangan"</strong>.<br>
-                   2. Ikuti alur cerita sebagai arkeolog digital.<br>
-                   3. Jelajahi Prasasti, Laut Nusantara, dan Tablet Digital.<br>
-                   4. Selesaikan misi dan dapatkan Sertifikat Pahlawan Literasi!</p>
-                <a href="https://etnosatek-nazwa.vercel.app" target="_blank" style="margin-top:20px; background:var(--emas-keraton); color:var(--marun-gelap); padding:12px 32px; border-radius:40px; text-decoration:none; font-weight:800; font-size:1.2rem;">Mulai Sekarang →</a>
-            </div>
+        <!-- FOOTER (page3.png) -->
+        <section class="img-section footer">
+            <img src="page3.png" alt="Footer Pemandangan ETNOSATEK" />
         </section>
 
-    </main>
+        <!-- ===== HALAMAN TERSEMBUNYI (Profile & Cara Main) ===== -->
+        <div id="profile" class="halaman hero-other">
+            <h2>Profil Pembuat</h2>
+            <p><strong>Nazwa Ananda Devina</strong><br>SMP Muhammadiyah 17 Ciputat · LKIP 2026<br><br><i>"Menghubungkan budaya Nusantara dengan teknologi modern."</i></p>
+            <div style="margin-top:15px; font-size:1.5rem;">
+                <i class="fab fa-instagram" style="color:var(--emas-aksen);"></i> @ananda_dev2
+            </div>
+        </div>
+
+        <div id="howtoplay" class="halaman hero-other">
+            <h2>Cara Main ETNOSATEK</h2>
+            <p>1. Klik tombol <strong>"Mulai Petualangan"</strong> di bawah.<br>
+               2. Ikuti alur cerita sebagai arkeolog digital.<br>
+               3. Jelajahi Prasasti, Laut Nusantara, dan Tablet Digital.</p>
+            <a class="btn-spring" href="https://etnosatek-nazwa.vercel.app" target="_blank">Mulai Sekarang →</a>
+        </div>
+
+    </div>
 
     <script>
+        // === Hamburger Logic ===
         const btn = document.getElementById('hamburgerBtn');
         const menu = document.getElementById('navDropdown');
 
@@ -240,19 +207,28 @@
             menu.classList.toggle('open');
         });
 
+        // === Navigasi Halaman ===
         const menuButtons = document.querySelectorAll('.nav-dropdown button');
         const pages = document.querySelectorAll('.halaman');
+        const imageSections = document.querySelectorAll('.img-section');
 
         menuButtons.forEach(btn => {
             btn.addEventListener('click', function() {
                 const targetId = this.getAttribute('data-target');
+
+                // Sembunyikan semua gambar
+                imageSections.forEach(el => el.style.display = 'none');
+                
+                // Tampilkan halaman yang dipilih
                 pages.forEach(page => {
                     page.classList.toggle('active', page.id === targetId);
                 });
+
                 menu.classList.remove('open');
             });
         });
 
+        // Klik luar untuk tutup menu
         document.addEventListener('click', (e) => {
             if (!btn.contains(e.target) && !menu.contains(e.target)) {
                 menu.classList.remove('open');
