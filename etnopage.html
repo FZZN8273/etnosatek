@@ -3,47 +3,53 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ETNOSATEK · 3 Bagian + Corak</title>
+    <title>ETNOSATEK · Blueprint Estetika 15cm</title>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
     <style>
         /* ===== OKLCH PALET ===== */
         :root {
-            --biru-teknologi: oklch(0.35 0.12 240); 
-            --krem-nusantara: oklch(0.92 0.06 80);
-            --emas-aksen: oklch(0.75 0.15 85);
+            --biru-teknologi: oklch(0.35 0.12 240); /* Warna garis/biru website */
+            --krem-nusantara: oklch(0.92 0.06 80);   /* Warna garis aksen */
+            --emas-aksen: oklch(0.75 0.15 85);       /* Warna kuning garis putus */
             --putih-beras: oklch(0.99 0.01 80);
+            --border-hitam: oklch(0.15 0.01 0);      /* 0.25cm border hitam tipis */
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
+
         body {
             font-family: 'Nunito', sans-serif;
-            /* Background Putih + Garis Biru & Kuning Bercorak (Seperti permintaan Anda) */
             background-color: var(--putih-beras);
-            background-image: 
-                /* Garis biru halus diagonal */
-                linear-gradient(45deg, var(--biru-teknologi) 1px, transparent 1px),
-                /* Garis kuning halus diagonal */
-                linear-gradient(-45deg, var(--emas-aksen) 1px, transparent 1px);
-            background-size: 40px 40px, 60px 60px; /* Ukuran pola kotak */
-            background-opacity: 0.05; /* Sangat tipis agar tidak mengganggu gambar */
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             padding: 20px 0;
+            overflow-x: hidden;
+
+            /* ===== ORNAMEN GEOMETRIS MINIMALIS (BIRU PUTIH) ===== */
+            /* Pola titik-titik (bola) biru 85% dominan di background */
+            background-image: 
+                radial-gradient(var(--biru-teknologi) 2px, transparent 2px),
+                radial-gradient(oklch(0.99 0.01 80) 1px, transparent 1px);
+            background-size: 60px 60px, 80px 80px;
+            background-position: 0 0, 30px 30px;
         }
 
-        /* ===== KONTAINER WEBSITE ===== */
+        /* ===== KONTAINER UTAMA ===== */
         .container-website {
             width: 100%;
-            max-width: 1200px;
+            max-width: 1100px;
             background: var(--putih-beras);
             border-radius: 32px;
             box-shadow: 0 20px 60px oklch(0 0 0 / 0.08);
-            overflow: hidden;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            /* JARAK UTAMA 15 CM SESUAI PERMINTAAN */
+            gap: 15cm; 
             position: relative;
             border: 1px solid oklch(0 0 0 / 0.05);
         }
@@ -52,7 +58,6 @@
         .floating-header {
             position: fixed;
             top: 20px; right: 20px; z-index: 999;
-            display: flex; flex-direction: column; align-items: flex-end;
         }
         .hamburger {
             background: var(--biru-teknologi);
@@ -71,105 +76,146 @@
             transition: all 0.3s ease; border: 1px solid oklch(0.8 0.02 80);
         }
         .nav-dropdown.open { opacity: 1; visibility: visible; transform: translateY(0); }
-        .nav-dropdown button {
-            display: block; width: 100%; background: transparent; border: none;
-            color: var(--biru-teknologi); padding: 10px 20px; font-family: inherit;
-            font-weight: 700; font-size: 0.9rem; cursor: pointer; text-align: left;
-            transition: background 0.2s;
-        }
-        .nav-dropdown button:hover { background: var(--krem-nusantara); color: var(--emas-aksen); }
-        .nav-dropdown button i { margin-right: 10px; width: 20px; }
+        .nav-dropdown button { display: block; width: 100%; background: transparent; border: none; padding: 10px 20px; font-weight: 700; cursor: pointer; text-align: left; transition: background 0.2s; }
+        .nav-dropdown button:hover { background: oklch(0.9 0.05 80); }
 
-        /* ===== HEADER (page1.png) & FOOTER (page3.png) ===== */
-        .img-section {
-            width: 100%; display: block; line-height: 0;
-        }
-        .img-section img {
-            width: 100%; height: auto; display: block; object-fit: cover;
-        }
-
-        /* ===== BODY BARU (page2.png) ===== */
-        /* Ini adalah bagian tengah dengan jarak 3cm dari header */
-        .body-section {
+        /* ===== WRAPPER GAMBAR + BORDER TIPIS 0.25cm ===== */
+        .img-wrapper {
             width: 100%;
-            /* JARAK 3 CM SESUAI PERMINTAAN ANDA! */
-            margin-top: 3cm;
-            margin-bottom: 3cm;
-            display: block;
+            /* BORDER HITAM TIPIS 0.25cm (2.5mm) */
+            border: 0.25cm solid var(--border-hitam);
+            border-radius: 8px;
+            overflow: hidden;
+            background: var(--putih-beras);
+            position: relative;
             line-height: 0;
-            padding: 0;
         }
-        .body-section img {
+        .img-wrapper img {
             width: 100%; height: auto; display: block;
         }
 
+        /* ===== DIVIDER 15cm (GARIS PUTUS-PUTUS DI DALAMNYA) ===== */
+        .divider-15cm {
+            width: 100%;
+            height: 15cm; /* Ruang scroll 15cm */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-evenly; /* Tersebar merata setiap 2-3cm */
+            padding: 0;
+            position: relative;
+            border-left: 0; border-right: 0;
+        }
+        
+        /* GARIS PUTUS-PUTUS KUNING/KREM DI SETIAP JEDA 2-3cm */
+        .dashed-line {
+            width: 80%;
+            height: 0;
+            border-top: 2px dashed var(--emas-aksen);
+            opacity: 0.6;
+        }
+
+        /* ===== AKSEN OKLCH PLAYFUL (TITIK KECIL JARANG) ===== */
+        /* Box-shadow acak untuk menciptakan "confetti" sangat jarang */
+        .confetti-aksen {
+            position: absolute;
+            top: -20px; right: -20px;
+            width: 50px; height: 50px;
+            pointer-events: none;
+            /* Warna-warni OKLCH dengan opacity rendah */
+            box-shadow: 
+                120px 80px 0 8px oklch(0.7 0.2 350 / 0.2),
+                -80px 30px 0 12px oklch(0.7 0.2 145 / 0.15),
+                250px 120px 0 6px oklch(0.75 0.18 85 / 0.3),
+                40px 180px 0 10px oklch(0.55 0.18 240 / 0.2);
+            z-index: 0;
+        }
+        .confetti-aksen::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: transparent;
+            box-shadow: 
+                20px 20px 0 4px oklch(0.75 0.15 85 / 0.4),
+                -150px 10px 0 6px oklch(0.55 0.22 20 / 0.2);
+        }
+
         /* ===== HALAMAN LAIN ===== */
-        .halaman { display: none; padding: 40px; text-align: center; }
+        .halaman { display: none; padding: 20px; text-align: center; }
         .halaman.active { display: block; }
-        .hero-other h2 { font-size: 2.5rem; color: var(--biru-teknologi); margin-bottom: 16px; }
-        .hero-other p { font-size: 1.1rem; color: var(--biru-teknologi); line-height: 1.8; }
+        .hero-other h2 { color: var(--biru-teknologi); margin-bottom: 1rem; }
         .btn-spring {
             display: inline-block; margin-top: 20px; background: var(--emas-aksen);
             color: var(--putih-beras); padding: 12px 32px; border-radius: 40px;
-            text-decoration: none; font-weight: 800; font-size: 1.1rem;
-            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            text-decoration: none; font-weight: 800; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
         .btn-spring:hover { transform: scale(1.05); }
 
         @media (max-width: 600px) {
-            body { padding: 8px; }
-            .container-website { border-radius: 16px; }
-            .floating-header { top: 10px; right: 10px; }
-            .hamburger { width: 44px; height: 44px; font-size: 1.2rem; }
-            .nav-dropdown { right: 0; min-width: 140px; }
-            .halaman { padding: 20px; }
-            .hero-other h2 { font-size: 1.8rem; }
-            .body-section { margin-top: 1.5cm; margin-bottom: 1.5cm; } /* Di HP jarak dikit diperkecil */
+            .container-website { padding: 10px; gap: 5cm; }
+            .divider-15cm { height: 5cm; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ===== FLOATING HAMBURGER ===== -->
     <header class="floating-header">
         <button class="hamburger" id="hamburgerBtn"><i class="fas fa-bars"></i></button>
         <nav class="nav-dropdown" id="navDropdown">
-            <button data-target="home"><i class="fas fa-home"></i> Home page</button>
+            <button data-target="home"><i class="fas fa-home"></i> Home</button>
             <button data-target="profile"><i class="fas fa-user"></i> Profile</button>
-            <button data-target="howtoplay"><i class="fas fa-gamepad"></i> Cara main!</button>
+            <button data-target="howtoplay"><i class="fas fa-gamepad"></i> Cara main</button>
         </nav>
     </header>
 
-    <!-- ===== KONTAINER UTAMA ===== -->
-    <div class="container-website">
+    <main class="container-website">
 
-        <!-- HEADER (page1.png) -->
-        <section class="img-section header">
+        <!-- ===== BLOK 1: HEADER ===== -->
+        <div class="img-wrapper">
+            <div class="confetti-aksen"></div> <!-- Titik OKLCH Playful -->
             <img src="page1.png" alt="Header ETNOSATEK" />
-        </section>
+        </div>
 
-        <!-- BODY BARU (page2.png) - Dengan Jarak 3cm dari Header -->
-        <section class="body-section">
+        <!-- ===== DIVIDER 15cm (Dengan garis putus-putus tiap 2-3cm) ===== -->
+        <div class="divider-15cm">
+            <div class="dashed-line"></div>
+            <div class="dashed-line" style="width: 60%;"></div>
+            <div class="dashed-line"></div>
+            <div class="dashed-line" style="width: 50%;"></div>
+            <div class="dashed-line"></div>
+        </div>
+
+        <!-- ===== BLOK 2: BODY ===== -->
+        <div class="img-wrapper">
+            <div class="confetti-aksen"></div>
             <img src="page2.png" alt="Body Konten ETNOSATEK" />
-        </section>
+        </div>
 
-        <!-- FOOTER (page3.png) -->
-        <section class="img-section footer">
-            <img src="page3.png" alt="Footer Pemandangan ETNOSATEK" />
-        </section>
+        <!-- ===== DIVIDER 15cm LAGI ===== -->
+        <div class="divider-15cm">
+            <div class="dashed-line" style="width: 70%;"></div>
+            <div class="dashed-line"></div>
+            <div class="dashed-line" style="width: 80%;"></div>
+            <div class="dashed-line"></div>
+        </div>
 
-        <!-- ===== HALAMAN LAIN ===== -->
+        <!-- ===== BLOK 3: FOOTER ===== -->
+        <div class="img-wrapper">
+            <div class="confetti-aksen"></div>
+            <img src="page3.png" alt="Footer ETNOSATEK" />
+        </div>
+
+        <!-- ===== HALAMAN TERSEMBUNYI ===== -->
         <div id="profile" class="halaman hero-other">
             <h2>Profil Pembuat</h2>
-            <p><strong>Nazwa Ananda Devina</strong><br>SMP Muhammadiyah 17 Ciputat · LKIP 2026</p>
+            <p><strong>Nazwa Ananda Devina</strong><br>SMP Muhammadiyah 17 Ciputat</p>
         </div>
         <div id="howtoplay" class="halaman hero-other">
-            <h2>Cara Main ETNOSATEK</h2>
-            <p>Klik tombol "Mulai Petualangan" untuk memulai misi!</p>
+            <h2>Cara Main</h2>
             <a class="btn-spring" href="https://etnosatek-nazwa.vercel.app" target="_blank">Mulai Sekarang →</a>
         </div>
-
-    </div>
+    </main>
 
     <script>
         const btn = document.getElementById('hamburgerBtn');
@@ -178,12 +224,13 @@
         
         const menuButtons = document.querySelectorAll('.nav-dropdown button');
         const pages = document.querySelectorAll('.halaman');
-        const imageSections = document.querySelectorAll('.img-section, .body-section');
+        const images = document.querySelectorAll('.img-wrapper');
 
         menuButtons.forEach(btn => {
             btn.addEventListener('click', function() {
                 const targetId = this.getAttribute('data-target');
-                imageSections.forEach(el => el.style.display = 'none');
+                images.forEach(el => el.style.display = 'none');
+                document.querySelectorAll('.divider-15cm').forEach(el => el.style.display = 'none');
                 pages.forEach(page => page.classList.toggle('active', page.id === targetId));
                 menu.classList.remove('open');
             });
