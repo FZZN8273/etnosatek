@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ETNOSATEK · Flat 3 Bagian</title>
+    <title>ETNOSATEK · Profile & Footer Global</title>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
@@ -17,7 +17,7 @@
             --border-hitam-tipis: oklch(0 0 0 / 0.2);
             --border-kuning: oklch(0.78 0.18 85);
             --border-krem: oklch(0.92 0.06 80);
-            --cokelat-batik: oklch(0.35 0.12 25); /* Pengaman bawah footer jika transparan */
+            --cokelat-batik: oklch(0.35 0.12 25);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -32,7 +32,7 @@
             overflow-y: auto;
             padding: 16px;
 
-            /* ===== BACKGROUND FLAT TANPA KOTAK BIRU SOLID ===== */
+            /* ===== BACKGROUND FLAT (60% Biru, 25% Krem, 15% Putih) ===== */
             background-color: var(--putih-base);
             background-image: 
                 radial-gradient(ellipse at 15% 85%, var(--biru-base) 0%, var(--biru-base) 50%, transparent 70%),
@@ -45,7 +45,7 @@
         .container-website {
             width: 100%;
             max-width: 900px;
-            padding: 20px 20px 0 20px; /* Padding bawah 0 agar footer melekat */
+            padding: 20px 20px 0 20px;
             display: flex;
             flex-direction: column;
             position: relative;
@@ -98,35 +98,30 @@
         .nav-dropdown button:hover { background: oklch(0.95 0.04 250); }
         .nav-dropdown button i { margin-right: 12px; width: 20px; }
 
-        /* ===== HOME WRAPPER ===== */
-        .home-wrapper {
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* ===== WRAPPER GAMBAR ===== */
+        /* ===== WRAPPER GAMBAR & DIVIDER ===== */
         .img-section {
             width: 100%;
             border-radius: 12px;
             overflow: hidden;
             line-height: 0;
             background: var(--putih-base);
+            margin-bottom: 4vh; /* Jarak antar gambar di dalam satu halaman */
+        }
+        .img-section:last-child {
+            margin-bottom: 0; /* Footer global tidak perlu jarak bawah */
         }
         .img-section img { width: 100%; height: auto; display: block; }
         
         .header-img { border: 1px solid var(--border-hitam-tipis); }
         .body-img   { border: 1px solid var(--border-kuning); }
-        .footer-img { 
-            border: 1px solid var(--border-krem);
-            background: var(--cokelat-batik); /* Pengaman footer PNG transparan */
-        }
+        .footer-img { border: 1px solid var(--border-krem); background: var(--cokelat-batik); }
 
         /* ===== DIVIDER (Garis Putus-Putus) ===== */
         .divider-section {
             width: 100%;
             display: flex; flex-direction: column; align-items: center;
             gap: 2.5vh;
-            margin: 4vh 0; 
+            margin: 2vh 0 6vh 0; /* Jarak antar blok */
         }
         .dashed-line {
             width: 70%; border-top: 2px dashed var(--border-kuning); opacity: 0.5;
@@ -134,10 +129,11 @@
         .dashed-line.small { width: 50%; }
         .dashed-line.large { width: 85%; }
 
-        /* ===== HALAMAN LAIN ===== */
-        .halaman { display: none; padding: 40px 20px; text-align: center; background: var(--putih-base); border-radius: 20px; margin-bottom: 20px; }
-        .halaman.active { display: block; }
-        .hero-other h2 { color: var(--biru-base); margin-bottom: 1rem; }
+        /* ===== WRAPPER HALAMAN ===== */
+        .page-wrapper { display: none; flex-direction: column; }
+        .page-wrapper.active { display: flex; }
+
+        /* ===== TOMBOL SPRING ===== */
         .btn-spring {
             display: inline-block; margin-top: 20px; background: var(--krem-base);
             color: var(--putih-base); padding: 12px 32px; border-radius: 40px;
@@ -150,7 +146,7 @@
             .container-website { padding: 10px 10px 0 10px; }
             .floating-header { top: 10px; right: 10px; }
             .hamburger { width: 44px; height: 44px; font-size: 1.2rem; }
-            .divider-section { margin: 3vh 0; gap: 2vh; }
+            .divider-section { margin: 1vh 0 4vh 0; gap: 2vh; }
         }
     </style>
 </head>
@@ -169,51 +165,96 @@
     <!-- ===== KONTAINER UTAMA ===== -->
     <main class="container-website">
 
-        <!-- ===== WRAPPER HOME ===== -->
-        <div id="home" class="home-wrapper">
+        <!-- ========================================== -->
+        <!-- HALAMAN HOME (page1, page2, page3 Global)  -->
+        <!-- ========================================== -->
+        <div id="home" class="page-wrapper active">
             
-            <!-- HEADER (page1.png) - GANTI dengan gambar profil Anda -->
             <div class="img-section header-img">
-                <img src="page1.png" alt="Header Profil ETNOSATEK" />
+                <img src="page1.png" alt="Home Header" />
             </div>
 
-            <!-- DIVIDER 1 -->
             <div class="divider-section">
-                <div class="dashed-line large"></div>
-                <div class="dashed-line"></div>
-                <div class="dashed-line small"></div>
-                <div class="dashed-line"></div>
+                <div class="dashed-line large"></div><div class="dashed-line"></div>
+                <div class="dashed-line small"></div><div class="dashed-line"></div>
             </div>
 
-            <!-- BODY (page2.png) - Isi konten apa yang didapat -->
             <div class="img-section body-img">
-                <img src="page2.png" alt="Body ETNOSATEK" />
+                <img src="page2.png" alt="Home Body" />
             </div>
 
-            <!-- DIVIDER 2 -->
             <div class="divider-section">
-                <div class="dashed-line small"></div>
-                <div class="dashed-line"></div>
-                <div class="dashed-line large"></div>
-                <div class="dashed-line"></div>
+                <div class="dashed-line small"></div><div class="dashed-line"></div>
+                <div class="dashed-line large"></div><div class="dashed-line"></div>
             </div>
 
-            <!-- FOOTER (page3.png) - Pemandangan/Atribut -->
+            <!-- FOOTER GLOBAL -->
             <div class="img-section footer-img">
-                <img src="page3.png" alt="Footer ETNOSATEK" />
+                <img src="page3.png" alt="Global Footer" />
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- HALAMAN PROFILE (profile1, profile2, profile3, + page3 Global) -->
+        <!-- ========================================== -->
+        <div id="profile" class="page-wrapper">
+            
+            <div class="img-section header-img">
+                <img src="profile1.png" alt="Profile Header" />
             </div>
 
+            <div class="divider-section">
+                <div class="dashed-line large"></div><div class="dashed-line"></div>
+                <div class="dashed-line small"></div><div class="dashed-line"></div>
+            </div>
+
+            <div class="img-section body-img">
+                <img src="profile2.png" alt="Profile Body" />
+            </div>
+
+            <div class="divider-section">
+                <div class="dashed-line small"></div><div class="dashed-line"></div>
+                <div class="dashed-line large"></div><div class="dashed-line"></div>
+            </div>
+
+            <!-- UCAPAN TERIMA KASIH (Profile3) -->
+            <div class="img-section" style="border: 1px solid var(--border-krem);">
+                <img src="profile3.png" alt="Profile Ucapan Terima Kasih" />
+            </div>
+
+            <div class="divider-section">
+                <div class="dashed-line large"></div><div class="dashed-line"></div>
+                <div class="dashed-line small"></div><div class="dashed-line"></div>
+            </div>
+
+            <!-- FOOTER GLOBAL -->
+            <div class="img-section footer-img">
+                <img src="page3.png" alt="Global Footer" />
+            </div>
         </div>
 
-        <!-- ===== HALAMAN LAIN (Profile & Cara Main) ===== -->
-        <div id="profile" class="halaman">
-            <h2>Detail Pembuat</h2>
-            <p><strong>Nazwa Ananda Devina</strong><br>SMP Muhammadiyah 17 Ciputat<br>Dibimbing Ibu Octa<br>LKIP 2026</p>
-        </div>
-        
-        <div id="howtoplay" class="halaman">
-            <h2>Cara Main</h2>
-            <a class="btn-spring" href="https://etnosatek-nazwa.vercel.app" target="_blank">Mulai Sekarang →</a>
+        <!-- ========================================== -->
+        <!-- HALAMAN CARA MAIN (+ page3 Global)         -->
+        <!-- ========================================== -->
+        <div id="howtoplay" class="page-wrapper">
+            
+            <!-- Teks Cara Main sederhana (karena tidak ada gambar khusus cara main) -->
+            <div style="padding: 40px 20px; text-align: center; background: var(--putih-base); border-radius: 20px; margin-bottom: 4vh;">
+                <h2 style="color: var(--biru-base); margin-bottom: 1rem;">Cara Main ETNOSATEK</h2>
+                <p style="margin-bottom: 10px;">1. Klik tombol <strong>"Mulai Petualangan"</strong> di bawah.</p>
+                <p>2. Ikuti alur cerita, jelajahi misi Prasasti, Laut, dan Tablet Digital.</p>
+                <a class="btn-spring" href="https://etnosatek-nazwa.vercel.app" target="_blank">Mulai Sekarang →</a>
+            </div>
+
+            <div class="divider-section">
+                <div class="dashed-line large"></div><div class="dashed-line"></div>
+                <div class="dashed-line small"></div><div class="dashed-line"></div>
+            </div>
+
+            <!-- FOOTER GLOBAL -->
+            <div class="img-section footer-img">
+                <img src="page3.png" alt="Global Footer" />
+            </div>
         </div>
 
     </main>
@@ -230,21 +271,17 @@
 
         // === Logika Navigasi ===
         const menuButtons = document.querySelectorAll('.nav-dropdown button');
-        const homeWrapper = document.getElementById('home');
-        const halamanLain = document.querySelectorAll('.halaman');
+        const pageWrappers = document.querySelectorAll('.page-wrapper');
 
         menuButtons.forEach(btn => {
             btn.addEventListener('click', function() {
                 const targetId = this.getAttribute('data-target');
 
-                if (targetId === 'home') {
-                    homeWrapper.style.display = 'flex';
-                    halamanLain.forEach(page => page.classList.remove('active'));
-                } else {
-                    homeWrapper.style.display = 'none';
-                    halamanLain.forEach(page => page.classList.remove('active'));
-                    document.getElementById(targetId).classList.add('active');
-                }
+                // Sembunyikan semua halaman
+                pageWrappers.forEach(page => page.classList.remove('active'));
+                
+                // Tampilkan halaman yang dipilih
+                document.getElementById(targetId).classList.add('active');
 
                 menu.classList.remove('open');
             });
@@ -258,3 +295,4 @@
     </script>
 </body>
 </html>
+
