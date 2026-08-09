@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ETNOSATEK · Final PNG</title>
+    <title>ETNOSATEK · Flat No Solid Blue</title>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
@@ -17,6 +17,7 @@
             --border-hitam-tipis: oklch(0 0 0 / 0.2);
             --border-kuning: oklch(0.78 0.18 85);
             --border-krem: oklch(0.92 0.06 80);
+            --cokelat-batik: oklch(0.35 0.12 25);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -31,7 +32,8 @@
             overflow-y: auto;
             padding: 16px;
 
-            /* ===== BACKGROUND FLAT 60/25/15 ===== */
+            /* ===== BACKGROUND FLAT TANPA KOTAK BIRU SOLID ===== */
+            /* Warna dasar putih 15% + Blob Biru 60% + Blob Krem 25% */
             background-color: var(--putih-base);
             background-image: 
                 radial-gradient(ellipse at 15% 85%, var(--biru-base) 0%, var(--biru-base) 50%, transparent 70%),
@@ -50,7 +52,7 @@
             position: relative;
         }
 
-        /* ===== FLOATING HAMBURGER ===== */
+        /* ===== FLOATING HAMBURGER (Pojok Kanan Atas) ===== */
         .floating-header {
             position: fixed;
             top: 20px;
@@ -97,6 +99,12 @@
         .nav-dropdown button:hover { background: oklch(0.95 0.04 250); }
         .nav-dropdown button i { margin-right: 12px; width: 20px; }
 
+        /* ===== HOME WRAPPER ===== */
+        .home-wrapper {
+            display: flex;
+            flex-direction: column;
+        }
+
         /* ===== WRAPPER GAMBAR ===== */
         .img-section {
             width: 100%;
@@ -107,12 +115,14 @@
         }
         .img-section img { width: 100%; height: auto; display: block; }
         
-        /* Border Spesifik */
-        .header-img { border: 1px solid var(--border-hitam-tipis); } /* page1.png & profile1.png */
-        .body-img   { border: 1px solid var(--border-kuning); }      /* profile2.png */
-        .footer-img { border: 1px solid var(--border-krem); }        /* page3.png & profile3.png */
+        .header-img { border: 1px solid var(--border-hitam-tipis); }
+        .body-img   { border: 1px solid var(--border-kuning); }
+        .footer-img { 
+            border: 1px solid var(--border-krem);
+            background: var(--cokelat-batik); /* Aman untuk footer PNG transparan */
+        }
 
-        /* ===== DIVIDER ===== */
+        /* ===== DIVIDER (Garis Putus-Putus) ===== */
         .divider-section {
             width: 100%;
             display: flex; flex-direction: column; align-items: center;
@@ -125,14 +135,9 @@
         .dashed-line.small { width: 50%; }
         .dashed-line.large { width: 85%; }
 
-        /* ===== HALAMAN LAIN ===== */
-        .halaman { 
-            display: none; 
-            padding: 20px 0; 
-            text-align: center; 
-        }
+        /* ===== HALAMAN LAIN (Profile & Cara Main) ===== */
+        .halaman { display: none; padding: 40px 20px; text-align: center; background: var(--putih-base); border-radius: 20px; margin-bottom: 20px; }
         .halaman.active { display: block; }
-        
         .hero-other h2 { color: var(--biru-base); margin-bottom: 1rem; }
         .btn-spring {
             display: inline-block; margin-top: 20px; background: var(--krem-base);
@@ -165,13 +170,15 @@
     <!-- ===== KONTAINER UTAMA ===== -->
     <main class="container-website">
 
-        <!-- ===== HOME PAGE ===== -->
+        <!-- ===== WRAPPER HOME ===== -->
         <div id="home" class="home-wrapper">
-            <!-- KHUSUS HOME: page1.png (Header) -->
+            
+            <!-- HEADER page1.png -->
             <div class="img-section header-img">
-                <img src="page1.png" alt="Header Home ETNOSATEK" />
+                <img src="page1.png" alt="Header ETNOSATEK" />
             </div>
 
+            <!-- DIVIDER 1 -->
             <div class="divider-section">
                 <div class="dashed-line large"></div>
                 <div class="dashed-line"></div>
@@ -179,11 +186,12 @@
                 <div class="dashed-line"></div>
             </div>
 
-            <!-- Body Home: profile2.png -->
+            <!-- BODY page2.png -->
             <div class="img-section body-img">
-                <img src="profile2.png" alt="Body Solusi ETNOSATEK" />
+                <img src="page2.png" alt="Body ETNOSATEK" />
             </div>
 
+            <!-- DIVIDER 2 -->
             <div class="divider-section">
                 <div class="dashed-line small"></div>
                 <div class="dashed-line"></div>
@@ -191,57 +199,28 @@
                 <div class="dashed-line"></div>
             </div>
 
-            <!-- Footer Global: page3.png -->
+            <!-- FOOTER page3.png -->
             <div class="img-section footer-img">
                 <img src="page3.png" alt="Footer ETNOSATEK" />
             </div>
+
         </div>
 
-        <!-- ===== PROFILE PAGE ===== -->
-        <div id="profile" class="halaman hero-other">
-            <h2>Profil Peneliti</h2>
-            <p><strong>Nazwa Ananda Devina</strong><br>SMP Muhammadiyah 17 Ciputat<br>Dibimbing Ibu Octa<br>LKIP 2026</p>
-
-            <!-- KHUSUS PROFILE: profile1.png, profile2.png, profile3.png -->
-            <div style="margin-top: 30px; width: 100%; display: flex; flex-direction: column; gap: 4vh;">
-                <div class="img-section header-img">
-                    <img src="profile1.png" alt="Profile 1" />
-                </div>
-                
-                <div class="img-section body-img">
-                    <img src="profile2.png" alt="Profile 2" />
-                </div>
-                
-                <div class="img-section footer-img">
-                    <img src="profile3.png" alt="Profile 3" />
-                </div>
-            </div>
-
-            <!-- Footer Global: page3.png -->
-            <div style="margin-top: 30px; width: 100%;">
-                <div class="img-section footer-img">
-                    <img src="page3.png" alt="Footer ETNOSATEK" />
-                </div>
-            </div>
+        <!-- ===== HALAMAN LAIN ===== -->
+        <div id="profile" class="halaman">
+            <h2>Profil Pembuat</h2>
+            <p><strong>Nazwa Ananda Devina</strong><br>SMP Muhammadiyah 17 Ciputat</p>
         </div>
         
-        <!-- ===== CARA MAIN PAGE ===== -->
-        <div id="howtoplay" class="halaman hero-other">
+        <div id="howtoplay" class="halaman">
             <h2>Cara Main</h2>
-            <p>Klik tombol di bawah untuk langsung memulai petualangan ETNOSATEK.</p>
             <a class="btn-spring" href="https://etnosatek-nazwa.vercel.app" target="_blank">Mulai Sekarang →</a>
-            
-            <!-- Footer Global: page3.png -->
-            <div style="margin-top: 30px; width: 100%;">
-                <div class="img-section footer-img">
-                    <img src="page3.png" alt="Footer ETNOSATEK" />
-                </div>
-            </div>
         </div>
 
     </main>
 
     <script>
+        // === Hamburger Logic ===
         const btn = document.getElementById('hamburgerBtn');
         const menu = document.getElementById('navDropdown');
 
@@ -250,6 +229,7 @@
             menu.classList.toggle('open');
         });
 
+        // === Logika Navigasi ===
         const menuButtons = document.querySelectorAll('.nav-dropdown button');
         const homeWrapper = document.getElementById('home');
         const halamanLain = document.querySelectorAll('.halaman');
