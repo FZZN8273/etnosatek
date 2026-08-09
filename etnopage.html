@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ETNOSATEK · Flat No Solid Blue</title>
+    <title>ETNOSATEK · Flat 3 Bagian</title>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
@@ -17,7 +17,7 @@
             --border-hitam-tipis: oklch(0 0 0 / 0.2);
             --border-kuning: oklch(0.78 0.18 85);
             --border-krem: oklch(0.92 0.06 80);
-            --cokelat-batik: oklch(0.35 0.12 25);
+            --cokelat-batik: oklch(0.35 0.12 25); /* Pengaman bawah footer jika transparan */
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -33,7 +33,6 @@
             padding: 16px;
 
             /* ===== BACKGROUND FLAT TANPA KOTAK BIRU SOLID ===== */
-            /* Warna dasar putih 15% + Blob Biru 60% + Blob Krem 25% */
             background-color: var(--putih-base);
             background-image: 
                 radial-gradient(ellipse at 15% 85%, var(--biru-base) 0%, var(--biru-base) 50%, transparent 70%),
@@ -46,7 +45,7 @@
         .container-website {
             width: 100%;
             max-width: 900px;
-            padding: 20px 20px 0 20px;
+            padding: 20px 20px 0 20px; /* Padding bawah 0 agar footer melekat */
             display: flex;
             flex-direction: column;
             position: relative;
@@ -119,7 +118,7 @@
         .body-img   { border: 1px solid var(--border-kuning); }
         .footer-img { 
             border: 1px solid var(--border-krem);
-            background: var(--cokelat-batik); /* Aman untuk footer PNG transparan */
+            background: var(--cokelat-batik); /* Pengaman footer PNG transparan */
         }
 
         /* ===== DIVIDER (Garis Putus-Putus) ===== */
@@ -135,7 +134,7 @@
         .dashed-line.small { width: 50%; }
         .dashed-line.large { width: 85%; }
 
-        /* ===== HALAMAN LAIN (Profile & Cara Main) ===== */
+        /* ===== HALAMAN LAIN ===== */
         .halaman { display: none; padding: 40px 20px; text-align: center; background: var(--putih-base); border-radius: 20px; margin-bottom: 20px; }
         .halaman.active { display: block; }
         .hero-other h2 { color: var(--biru-base); margin-bottom: 1rem; }
@@ -173,9 +172,9 @@
         <!-- ===== WRAPPER HOME ===== -->
         <div id="home" class="home-wrapper">
             
-            <!-- HEADER page1.png -->
+            <!-- HEADER (page1.png) - GANTI dengan gambar profil Anda -->
             <div class="img-section header-img">
-                <img src="page1.png" alt="Header ETNOSATEK" />
+                <img src="page1.png" alt="Header Profil ETNOSATEK" />
             </div>
 
             <!-- DIVIDER 1 -->
@@ -186,7 +185,7 @@
                 <div class="dashed-line"></div>
             </div>
 
-            <!-- BODY page2.png -->
+            <!-- BODY (page2.png) - Isi konten apa yang didapat -->
             <div class="img-section body-img">
                 <img src="page2.png" alt="Body ETNOSATEK" />
             </div>
@@ -199,17 +198,17 @@
                 <div class="dashed-line"></div>
             </div>
 
-            <!-- FOOTER page3.png -->
+            <!-- FOOTER (page3.png) - Pemandangan/Atribut -->
             <div class="img-section footer-img">
                 <img src="page3.png" alt="Footer ETNOSATEK" />
             </div>
 
         </div>
 
-        <!-- ===== HALAMAN LAIN ===== -->
+        <!-- ===== HALAMAN LAIN (Profile & Cara Main) ===== -->
         <div id="profile" class="halaman">
-            <h2>Profil Pembuat</h2>
-            <p><strong>Nazwa Ananda Devina</strong><br>SMP Muhammadiyah 17 Ciputat</p>
+            <h2>Detail Pembuat</h2>
+            <p><strong>Nazwa Ananda Devina</strong><br>SMP Muhammadiyah 17 Ciputat<br>Dibimbing Ibu Octa<br>LKIP 2026</p>
         </div>
         
         <div id="howtoplay" class="halaman">
