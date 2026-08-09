@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ETNOSATEK · Layout Akhir PNG</title>
+    <title>ETNOSATEK · Final PNG</title>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
@@ -107,10 +107,10 @@
         }
         .img-section img { width: 100%; height: auto; display: block; }
         
-        /* Border khusus sesuai permintaan */
-        .header-img { border: 1px solid var(--border-hitam-tipis); } /* profile1.png */
+        /* Border Spesifik */
+        .header-img { border: 1px solid var(--border-hitam-tipis); } /* page1.png & profile1.png */
         .body-img   { border: 1px solid var(--border-kuning); }      /* profile2.png */
-        .footer-img { border: 1px solid var(--border-krem); }        /* profile3.png + page3.png */
+        .footer-img { border: 1px solid var(--border-krem); }        /* page3.png & profile3.png */
 
         /* ===== DIVIDER ===== */
         .divider-section {
@@ -167,10 +167,9 @@
 
         <!-- ===== HOME PAGE ===== -->
         <div id="home" class="home-wrapper">
-            
-            <!-- Header: profile1.png -->
+            <!-- KHUSUS HOME: page1.png (Header) -->
             <div class="img-section header-img">
-                <img src="profile1.png" alt="Header ETNOSATEK" />
+                <img src="page1.png" alt="Header Home ETNOSATEK" />
             </div>
 
             <div class="divider-section">
@@ -180,9 +179,9 @@
                 <div class="dashed-line"></div>
             </div>
 
-            <!-- Body: profile2.png -->
+            <!-- Body Home: profile2.png -->
             <div class="img-section body-img">
-                <img src="profile2.png" alt="Body ETNOSATEK" />
+                <img src="profile2.png" alt="Body Solusi ETNOSATEK" />
             </div>
 
             <div class="divider-section">
@@ -196,24 +195,33 @@
             <div class="img-section footer-img">
                 <img src="page3.png" alt="Footer ETNOSATEK" />
             </div>
-
         </div>
 
         <!-- ===== PROFILE PAGE ===== -->
         <div id="profile" class="halaman hero-other">
             <h2>Profil Peneliti</h2>
             <p><strong>Nazwa Ananda Devina</strong><br>SMP Muhammadiyah 17 Ciputat<br>Dibimbing Ibu Octa<br>LKIP 2026</p>
-            
-            <!-- Konten Profile: profile3.png -->
-            <div style="margin: 30px 0 20px 0; width: 100%;">
+
+            <!-- KHUSUS PROFILE: profile1.png, profile2.png, profile3.png -->
+            <div style="margin-top: 30px; width: 100%; display: flex; flex-direction: column; gap: 4vh;">
+                <div class="img-section header-img">
+                    <img src="profile1.png" alt="Profile 1" />
+                </div>
+                
+                <div class="img-section body-img">
+                    <img src="profile2.png" alt="Profile 2" />
+                </div>
+                
                 <div class="img-section footer-img">
-                    <img src="profile3.png" alt="Ucapan Terima Kasih" />
+                    <img src="profile3.png" alt="Profile 3" />
                 </div>
             </div>
 
             <!-- Footer Global: page3.png -->
-            <div class="img-section footer-img">
-                <img src="page3.png" alt="Footer ETNOSATEK" />
+            <div style="margin-top: 30px; width: 100%;">
+                <div class="img-section footer-img">
+                    <img src="page3.png" alt="Footer ETNOSATEK" />
+                </div>
             </div>
         </div>
         
