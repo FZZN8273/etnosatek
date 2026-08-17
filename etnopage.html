@@ -3,23 +3,19 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ETNOSATEK · Footer Melekat</title>
+    <title>ETNOSATEK</title>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-
     <style>
         /* ===== OKLCH PALET ===== */
         :root {
-            --biru-base: oklch(0.45 0.12 240); 
-            --krem-base: oklch(0.88 0.08 80);  
-            --putih-base: oklch(1 0 0);        
-
+            --biru-base: oklch(0.45 0.12 240);
+            --krem-base: oklch(0.88 0.08 80);
+            --putih-base: oklch(1 0 0);
             --border-hitam-tipis: oklch(0 0 0 / 0.2);
             --border-kuning: oklch(0.78 0.18 85);
             --border-krem: oklch(0.92 0.06 80);
             --cokelat-batik: oklch(0.35 0.12 25);
-            
-            /* ===== NEON OKLCH UNTUK PROFILE ===== */
             --neon-oklch: oklch(0.75 0.25 290);
         }
 
@@ -34,7 +30,6 @@
             overflow-x: hidden;
             overflow-y: auto;
             padding: 16px;
-
             background-color: var(--biru-base);
             background-image: 
                 radial-gradient(circle at 90% 10%, var(--krem-base) 0%, var(--krem-base) 25%, transparent 30%),
@@ -43,7 +38,6 @@
             background-size: 100% 100%;
         }
 
-        /* ===== KONTAINER UTAMA ===== */
         .container-website {
             width: 100%;
             max-width: 900px;
@@ -53,7 +47,6 @@
             position: relative;
         }
 
-        /* ===== FLOATING HAMBURGER ===== */
         .floating-header {
             position: fixed;
             top: 20px;
@@ -74,7 +67,6 @@
         }
         .hamburger:hover { transform: scale(1.1); }
 
-        /* ===== MENU DROPDOWN ===== */
         .nav-dropdown {
             position: absolute;
             top: 58px;
@@ -100,7 +92,6 @@
         .nav-dropdown button:hover { background: oklch(0.95 0.04 250); }
         .nav-dropdown button i { margin-right: 12px; width: 20px; }
 
-        /* ===== WRAPPER GAMBAR & HOME ===== */
         .home-wrapper { display: flex; flex-direction: column; }
         
         .img-section {
@@ -109,13 +100,13 @@
             overflow: hidden;
             line-height: 0;
             background: var(--putih-base);
-            box-shadow: 0 8px 30px oklch(0 0 0 / 0.08); 
+            box-shadow: 0 8px 30px oklch(0 0 0 / 0.08);
         }
         .img-section img { width: 100%; height: auto; display: block; }
         
         .header-img { border: 1px solid var(--border-hitam-tipis); }
         .body-img   { border: 1px solid var(--border-kuning); }
-        .footer-img { 
+        .footer-img {
             border: 1px solid var(--border-krem);
             background: var(--cokelat-batik);
         }
@@ -150,49 +141,7 @@
         }
         .btn-spring:hover { transform: scale(1.05); }
 
-        /* ===== STYLE UNTUK AI CHAT BOT (DIJAMIN BISA DIKLIK DI HP) ===== */
-        #ai-chat-btn {
-            position: fixed; bottom: 20px; right: 20px; 
-            z-index: 99999 !important;
-            background: var(--biru-base); border: none;
-            width: 60px; height: 60px; border-radius: 50%;
-            font-size: 28px; color: white; cursor: pointer;
-            pointer-events: auto !important;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: 0.3s;
-            display: flex; justify-content: center; align-items: center;
-        }
-        #ai-chat-btn:hover, #ai-chat-btn:active { transform: scale(1.1); }
-        
-        #ai-chat-window {
-            position: fixed; bottom: 90px; right: 20px; 
-            z-index: 99999 !important;
-            width: 340px; max-width: 90vw; height: 420px;
-            background: #fff; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            display: none; flex-direction: column; overflow: hidden;
-            border: 1px solid #ddd;
-        }
-        #ai-chat-window.open { display: flex; }
-
-        #ai-chat-header {
-            background: var(--biru-base); color: white;
-            padding: 14px 16px; font-weight: bold; display: flex;
-            justify-content: space-between; align-items: center;
-        }
-        #ai-chat-header button { background: transparent; border: none; color: white; font-size: 18px; cursor: pointer; }
-
-        #ai-chat-messages {
-            flex: 1; padding: 12px; overflow-y: auto; background: #f9f9f9;
-            display: flex; flex-direction: column; gap: 8px;
-        }
-        .msg-bot { align-self: flex-start; background: #eee; padding: 10px 14px; border-radius: 16px 16px 16px 0; max-width: 85%; font-size: 14px; color: #333; line-height: 1.5; }
-        .msg-user { align-self: flex-end; background: var(--biru-base); color: white; padding: 10px 14px; border-radius: 16px 16px 0 16px; max-width: 85%; font-size: 14px; line-height: 1.5; }
-
-        #ai-chat-input-area {
-            padding: 10px; border-top: 1px solid #ddd; display: flex; gap: 8px; background: #fff;
-        }
-        #ai-chat-input { flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 30px; outline: none; }
-        #ai-chat-send { background: var(--biru-base); color: white; border: none; padding: 8px 18px; border-radius: 30px; cursor: pointer; font-weight: bold; }
-
+        /* RESPONSIVE */
         @media (max-width: 600px) {
             body { padding: 10px; }
             .container-website { padding: 10px 10px 0 10px; }
@@ -201,7 +150,6 @@
             .divider-section { margin: 3vh 0; gap: 2vh; }
             .img-section { border-radius: 50px; }
             .profile-neon-border { border-radius: 50px; }
-            #ai-chat-window { width: 90vw; right: 5vw; }
         }
     </style>
 </head>
@@ -222,33 +170,27 @@
 
         <!-- ===== WRAPPER HOME ===== -->
         <div id="home" class="home-wrapper">
-            
             <div class="img-section header-img">
                 <img src="page1.png" alt="Header ETNOSATEK" />
             </div>
-
             <div class="divider-section">
                 <div class="dashed-line large"></div>
                 <div class="dashed-line"></div>
                 <div class="dashed-line small"></div>
                 <div class="dashed-line"></div>
             </div>
-
             <div class="img-section body-img">
                 <img src="page2.png" alt="Body ETNOSATEK" />
             </div>
-
             <div class="divider-section">
                 <div class="dashed-line small"></div>
                 <div class="dashed-line"></div>
                 <div class="dashed-line large"></div>
                 <div class="dashed-line"></div>
             </div>
-
             <div class="img-section footer-img">
                 <img src="page3.png" alt="Footer ETNOSATEK" />
             </div>
-
         </div>
 
         <!-- ===== HALAMAN PROFILE ===== -->
@@ -264,7 +206,6 @@
                     <img src="profile3.png" alt="Profile 3" />
                 </div>
             </div>
-
             <div style="margin-top: 40px; width: 100%;">
                 <div class="img-section footer-img">
                     <img src="page3.png" alt="Footer ETNOSATEK" />
@@ -276,7 +217,6 @@
         <div id="howtoplay" class="halaman hero-other">
             <h2>Cara Main</h2>
             <a class="btn-spring" href="https://etnosatek-nazwa.vercel.app" target="_blank">Mulai Sekarang →</a>
-            
             <div style="margin-top: 30px; width: 100%;">
                 <div class="img-section footer-img">
                     <img src="page3.png" alt="Footer ETNOSATEK" />
@@ -286,149 +226,36 @@
 
     </main>
 
-    <!-- ===== ELEMEN AI CHAT BOT ===== -->
-    <!-- PERHATIKAN: Tombol ini akan dihubungkan lewat JS di bawah, jadi jangan hapus id-nya -->
-   <button id="ai-chat-btn" onclick="toggleChat()">🤖</button>
-    <div id="ai-chat-window">
-        <div id="ai-chat-header">
+    <!-- ============================================================
+         CHATBOT (FIX TOTAL) – HTML dengan inline style agar aman
+    ============================================================ -->
+    <button id="ai-chat-btn"
+            style="position:fixed; bottom:20px; right:20px; z-index:999999; width:60px; height:60px; border-radius:50%; background:#4a6fa5; border:4px solid white; font-size:28px; color:white; cursor:pointer; box-shadow:0 4px 20px rgba(0,0,0,0.5); display:flex; justify-content:center; align-items:center; transition:0.2s;"
+            onclick="toggleChat()"
+            onmouseover="this.style.transform='scale(1.1)'"
+            onmouseout="this.style.transform='scale(1)'">
+        🤖
+    </button>
+
+    <div id="ai-chat-window"
+         style="position:fixed; bottom:90px; right:20px; z-index:999998; width:340px; max-width:90vw; height:420px; background:#fff; border-radius:20px; box-shadow:0 10px 40px rgba(0,0,0,0.3); display:none; flex-direction:column; overflow:hidden; border:1px solid #ddd;">
+        <div id="ai-chat-header" style="background:#4a6fa5; color:white; padding:14px 16px; font-weight:bold; display:flex; justify-content:space-between; align-items:center;">
             <span>🤖 Asisten ETNOSATEK</span>
-            <button onclick="toggleChat()">✕</button>
+            <button onclick="toggleChat()" style="background:transparent; border:none; color:white; font-size:20px; cursor:pointer;">✕</button>
         </div>
-        <div id="ai-chat-messages">
-            <div class="msg-bot">Halo Kapten! Saya asisten ETNOSATEK. Silakan tanya apa saja tentang game, prasasti, GPS, atau literasi digital!</div>
+        <div id="ai-chat-messages" style="flex:1; padding:12px; overflow-y:auto; background:#f9f9f9; display:flex; flex-direction:column; gap:8px;">
+            <div class="msg-bot" style="align-self:flex-start; background:#eee; padding:10px 14px; border-radius:16px 16px 16px 0; max-width:85%; font-size:14px; color:#333; line-height:1.5;">
+                Halo Kapten! Saya asisten ETNOSATEK. Silakan tanya apa saja tentang game, prasasti, GPS, atau literasi digital!
+            </div>
         </div>
-        <div id="ai-chat-input-area">
-            <input type="text" id="ai-chat-input" placeholder="Tulis pertanyaan..." onkeypress="if(event.key==='Enter') sendChatGemini()">
-            <button id="ai-chat-send" onclick="sendChatGemini()">Kirim</button>
+        <div id="ai-chat-input-area" style="padding:10px; border-top:1px solid #ddd; display:flex; gap:8px; background:#fff;">
+            <input type="text" id="ai-chat-input" placeholder="Tulis pertanyaan..." style="flex:1; padding:10px; border:1px solid #ddd; border-radius:30px; outline:none;" onkeypress="if(event.key==='Enter') sendChatGemini()">
+            <button id="ai-chat-send" onclick="sendChatGemini()" style="background:#4a6fa5; color:white; border:none; padding:8px 18px; border-radius:30px; cursor:pointer; font-weight:bold;">Kirim</button>
         </div>
     </div>
 
-    <script>
-        // === Hamburger Logic ===
-        const btn = document.getElementById('hamburgerBtn');
-        const menu = document.getElementById('navDropdown');
+    <!-- ===== JAVASCRIPT EKSTERNAL ===== -->
+    <script src="script.js"></script>
 
-        btn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            menu.classList.toggle('open');
-        });
-
-        // === Logika Navigasi ===
-        const menuButtons = document.querySelectorAll('.nav-dropdown button');
-        const homeWrapper = document.getElementById('home');
-        const halamanLain = document.querySelectorAll('.halaman');
-
-        menuButtons.forEach(btn => {
-            btn.addEventListener('click', function() {
-                const targetId = this.getAttribute('data-target');
-                if (targetId === 'home') {
-                    homeWrapper.style.display = 'flex';
-                    halamanLain.forEach(page => page.classList.remove('active'));
-                } else {
-                    homeWrapper.style.display = 'none';
-                    halamanLain.forEach(page => page.classList.remove('active'));
-                    document.getElementById(targetId).classList.add('active');
-                }
-                menu.classList.remove('open');
-            });
-        });
-
-        document.addEventListener('DOMContentLoaded', function() {
-            homeWrapper.style.display = 'flex';
-            halamanLain.forEach(page => page.classList.remove('active'));
-        });
-
-        document.addEventListener('click', (e) => {
-            if (!btn.contains(e.target) && !menu.contains(e.target)) {
-                menu.classList.remove('open');
-            }
-        });
-
-        // =================================================================
-        // ===== AI CHAT BERBASIS JSON (Membaca knowledge.json) =====
-        // =================================================================
-        // 1. Tempat menyimpan data dari JSON
-        let knowledgeBase = [];
-
-        // 2. Fungsi buka/tutup chat (Sekarang dihubungkan lewat JS agar tidak error)
-        function toggleChat() {
-            document.getElementById('ai-chat-window').classList.toggle('open');
-        }
-
-        // 3. Fungsi mencari jawaban berdasarkan kata kunci dari JSON
-        function getEtnosatekReply(message) {
-            const q = message.toLowerCase();
-            let bestMatch = null;
-
-            // Loop semua data di knowledgeBase untuk mencari kata kunci yang cocok
-            for (let i = 0; i < knowledgeBase.length; i++) {
-                const item = knowledgeBase[i];
-                for (let j = 0; j < item.keywords.length; j++) {
-                    if (q.includes(item.keywords[j])) {
-                        bestMatch = item;
-                        break;
-                    }
-                }
-                if (bestMatch) break;
-            }
-
-            // Jika ketemu, ambil jawaban secara acak dari list jawaban yang tersedia
-            if (bestMatch) {
-                const randomIndex = Math.floor(Math.random() * bestMatch.replies.length);
-                return bestMatch.replies[randomIndex];
-            }
-
-            // Jika tidak ada kata kunci yang cocok, berikan jawaban default
-            return "Saya spesialis ETNOSATEK, Kapten! Silakan tanya seputar: 'Apa itu ETNOSATEK?', 'Prasasti & Sistem Biner', 'GPS & Navigasi Bintang', 'Literasi Digital (Hoaks/Phishing/Cyberbullying)', 'Cara Main', atau 'Profil Pembuat'.";
-        }
-
-        // 4. Fungsi utama saat user mengirim chat
-        async function sendChatGemini() {
-            const input = document.getElementById('ai-chat-input');
-            const msg = input.value.trim();
-            if(!msg) return;
-
-            const container = document.getElementById('ai-chat-messages');
-            container.innerHTML += `<div class="msg-user">${msg}</div>`;
-            input.value = '';
-            container.scrollTop = container.scrollHeight;
-
-            // Tampilkan indikator sedang mengetik
-            const loadingDiv = document.createElement('div');
-            loadingDiv.className = 'msg-bot';
-            loadingDiv.innerText = "Mencari jawaban di perpustakaan Nusantara...";
-            container.appendChild(loadingDiv);
-            container.scrollTop = container.scrollHeight;
-
-            setTimeout(() => {
-                container.removeChild(loadingDiv);
-                // Panggil AI lokal berdasarkan JSON
-                const reply = getEtnosatekReply(msg);
-                container.innerHTML += `<div class="msg-bot">${reply}</div>`;
-                container.scrollTop = container.scrollHeight;
-            }, 600);
-        }
-
-        // 5. MUAT FILE knowledge.json SAAT HALAMAN DIBUKA!
-        fetch('knowledge.json')
-          .then(res => res.json())
-          .then(data => { 
-              knowledgeBase = data; 
-              console.log('✅ Knowledge base ETNOSATEK berhasil dimuat!');
-          })
-          .catch(err => console.error('❌ Gagal memuat knowledge.json:', err));
-
-        // ==============================================
-        // === PERBAIKAN TOMBOL AI (AGAR TIDAK ERROR) ===
-        // ==============================================
-        // Menghubungkan tombol robot dengan fungsi toggleChat langsung saat halaman siap
-        document.addEventListener('DOMContentLoaded', function() {
-            const aiBtn = document.getElementById('ai-chat-btn');
-            if(aiBtn) {
-                aiBtn.addEventListener('click', toggleChat);
-            }
-        });
-
-    </script>
 </body>
 </html>
