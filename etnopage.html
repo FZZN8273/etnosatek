@@ -35,7 +35,6 @@
             overflow-y: auto;
             padding: 16px;
 
-            /* ===== BACKGROUND FLAT (60% Biru, 25% Krem, 15% Putih) ===== */
             background-color: var(--biru-base);
             background-image: 
                 radial-gradient(circle at 90% 10%, var(--krem-base) 0%, var(--krem-base) 25%, transparent 30%),
@@ -106,11 +105,10 @@
         
         .img-section {
             width: 100%;
-            border-radius: 90px; /* Corner Radius 90 sesuai permintaan */
+            border-radius: 90px;
             overflow: hidden;
             line-height: 0;
             background: var(--putih-base);
-            /* Shadow diganti agar tidak blur di atas. Tetap memberi kesan melayang tipis. */
             box-shadow: 0 8px 30px oklch(0 0 0 / 0.08); 
         }
         .img-section img { width: 100%; height: auto; display: block; }
@@ -122,7 +120,6 @@
             background: var(--cokelat-batik);
         }
 
-        /* ===== BORDER NEON KHUSUS UNTUK PROFILE ===== */
         .profile-neon-border {
             border-radius: 90px;
             border: 2px solid transparent;
@@ -130,7 +127,6 @@
             background: var(--putih-base);
         }
 
-        /* ===== DIVIDER ===== */
         .divider-section {
             width: 100%;
             display: flex; flex-direction: column; align-items: center;
@@ -143,7 +139,6 @@
         .dashed-line.small { width: 50%; }
         .dashed-line.large { width: 85%; }
 
-        /* ===== HALAMAN LAIN ===== */
         .halaman { display: none; padding: 20px 0; text-align: center; }
         .halaman.active { display: block; }
         
@@ -155,19 +150,22 @@
         }
         .btn-spring:hover { transform: scale(1.05); }
 
-        /* ===== STYLE UNTUK AI CHAT BOT ===== */
+        /* ===== STYLE UNTUK AI CHAT BOT (DIJAMIN BISA DIKLIK DI HP) ===== */
         #ai-chat-btn {
-            position: fixed; bottom: 20px; right: 20px; z-index: 9999;
+            position: fixed; bottom: 20px; right: 20px; 
+            z-index: 99999 !important; /* Kunci biar ga nutup */
             background: var(--biru-base); border: none;
             width: 60px; height: 60px; border-radius: 50%;
             font-size: 28px; color: white; cursor: pointer;
+            pointer-events: auto !important; /* Paksa biar bisa diklik */
             box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: 0.3s;
             display: flex; justify-content: center; align-items: center;
         }
-        #ai-chat-btn:hover { transform: scale(1.1); }
+        #ai-chat-btn:hover, #ai-chat-btn:active { transform: scale(1.1); }
         
         #ai-chat-window {
-            position: fixed; bottom: 90px; right: 20px; z-index: 9999;
+            position: fixed; bottom: 90px; right: 20px; 
+            z-index: 99999 !important;
             width: 340px; max-width: 90vw; height: 420px;
             background: #fff; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             display: none; flex-direction: column; overflow: hidden;
@@ -225,7 +223,6 @@
         <!-- ===== WRAPPER HOME ===== -->
         <div id="home" class="home-wrapper">
             
-            <!-- HEADER page1.png -->
             <div class="img-section header-img">
                 <img src="page1.png" alt="Header ETNOSATEK" />
             </div>
@@ -237,7 +234,6 @@
                 <div class="dashed-line"></div>
             </div>
 
-            <!-- BODY page2.png -->
             <div class="img-section body-img">
                 <img src="page2.png" alt="Body ETNOSATEK" />
             </div>
@@ -249,7 +245,6 @@
                 <div class="dashed-line"></div>
             </div>
 
-            <!-- FOOTER page3.png -->
             <div class="img-section footer-img">
                 <img src="page3.png" alt="Footer ETNOSATEK" />
             </div>
@@ -258,7 +253,6 @@
 
         <!-- ===== HALAMAN PROFILE ===== -->
         <div id="profile" class="halaman">
-            <!-- Susunan Profile: 3 Gambar dengan Neon Border -->
             <div style="width: 100%; display: flex; flex-direction: column; gap: 4vh;">
                 <div class="img-section profile-neon-border">
                     <img src="profile1.png" alt="Profile 1" />
@@ -271,7 +265,6 @@
                 </div>
             </div>
 
-            <!-- Footer Global page3.png di bawah profile -->
             <div style="margin-top: 40px; width: 100%;">
                 <div class="img-section footer-img">
                     <img src="page3.png" alt="Footer ETNOSATEK" />
@@ -284,7 +277,6 @@
             <h2>Cara Main</h2>
             <a class="btn-spring" href="https://etnosatek-nazwa.vercel.app" target="_blank">Mulai Sekarang →</a>
             
-            <!-- Footer Global page3.png di bawah cara main -->
             <div style="margin-top: 30px; width: 100%;">
                 <div class="img-section footer-img">
                     <img src="page3.png" alt="Footer ETNOSATEK" />
@@ -328,7 +320,6 @@
         menuButtons.forEach(btn => {
             btn.addEventListener('click', function() {
                 const targetId = this.getAttribute('data-target');
-
                 if (targetId === 'home') {
                     homeWrapper.style.display = 'flex';
                     halamanLain.forEach(page => page.classList.remove('active'));
@@ -337,12 +328,10 @@
                     halamanLain.forEach(page => page.classList.remove('active'));
                     document.getElementById(targetId).classList.add('active');
                 }
-
                 menu.classList.remove('open');
             });
         });
 
-        // === INISIALISASI AWAL ===
         document.addEventListener('DOMContentLoaded', function() {
             homeWrapper.style.display = 'flex';
             halamanLain.forEach(page => page.classList.remove('active'));
@@ -355,15 +344,13 @@
         });
 
         // =================================================================
-        // ===== KONFIGURASI AI CHAT =====
+        // ===== KONFIGURASI AI CHAT (FIXED UNTUK HP) =====
         // =================================================================
-        // GANTI API KEY DI BAWAH INI DENGAN API KEY ANDA DARI GOOGLE GEMINI!
         const API_KEY = "AQ.Ab8RN6Lp1n23WogjK7CI4D47guKyRplisx69OkCDNbY6nmDIXw"; 
         
-        const SITE_URL = "https://fzzn8273.github.io/etnosatek/etnopage.html";
-
         function toggleChat() {
-            document.getElementById('ai-chat-window').classList.toggle('open');
+            const window = document.getElementById('ai-chat-window');
+            window.classList.toggle('open');
         }
 
         async function sendChatGemini() {
@@ -383,7 +370,6 @@
             container.scrollTop = container.scrollHeight;
 
             try {
-                // Panggil API Google Gemini langsung
                 const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -407,8 +393,7 @@
                 }
             } catch (error) {
                 container.removeChild(loadingDiv);
-                container.innerHTML += `<div class="msg-bot">Terjadi masalah teknis. Pastikan API Key sudah dimasukkan dengan benar!</div>`;
-                console.error(error);
+                container.innerHTML += `<div class="msg-bot">Terjadi masalah teknis. Pastikan internet Anda stabil!</div>`;
             }
             container.scrollTop = container.scrollHeight;
         }
