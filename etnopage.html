@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ETNOSATEK</title>
+    <title>ETNOSATEK · Footer Melekat</title>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
@@ -13,10 +13,11 @@
             --biru-base: oklch(0.45 0.12 240); 
             --krem-base: oklch(0.88 0.08 80);  
             --putih-base: oklch(1 0 0);        
+
+            --border-hitam-tipis: oklch(0 0 0 / 0.2);
+            --border-kuning: oklch(0.78 0.18 85);
+            --border-krem: oklch(0.92 0.06 80);
             --cokelat-batik: oklch(0.35 0.12 25);
-            
-            /* ===== WARNA SHADOW KREM SESUAI FOTO ===== */
-            --shadow-krem: oklch(0.75 0.15 85 / 0.5); /* Warna krem DBA252 dengan transparansi 0.5 */
             
             /* ===== NEON OKLCH UNTUK PROFILE ===== */
             --neon-oklch: oklch(0.75 0.25 290);
@@ -105,29 +106,27 @@
         
         .img-section {
             width: 100%;
-            /* PERUBAHAN UTAMA: Corner radius 90px & Shadow Krem */
-            border-radius: 90px;
+            border-radius: 90px; /* Corner Radius 90 sesuai permintaan */
             overflow: hidden;
+            line-height: 0;
             background: var(--putih-base);
-            
-            /* Drop Shadow Krem sesuai foto (10px x, -18px y, 16.5px blur, 35 spread) */
-            box-shadow: 10px -18px 16.5px 35px var(--shadow-krem);
-            
-            /* Agar gambar tidak terpotong oleh shadow */
-            position: relative;
-            z-index: 1;
+            /* Shadow diganti agar tidak blur di atas. Tetap memberi kesan melayang tipis. */
+            box-shadow: 0 8px 30px oklch(0 0 0 / 0.08); 
         }
-        .img-section img { 
-            width: 100%; 
-            height: auto; 
-            display: block; 
+        .img-section img { width: 100%; height: auto; display: block; }
+        
+        .header-img { border: 1px solid var(--border-hitam-tipis); }
+        .body-img   { border: 1px solid var(--border-kuning); }
+        .footer-img { 
+            border: 1px solid var(--border-krem);
+            background: var(--cokelat-batik);
         }
 
         /* ===== BORDER NEON KHUSUS UNTUK PROFILE ===== */
         .profile-neon-border {
+            border-radius: 90px;
             border: 2px solid transparent;
-            border-radius: 90px; /* Sesuaikan radius 90 juga */
-            box-shadow: 0 0 12px var(--neon-oklch), inset 0 0 12px var(--neon-oklch), 10px -18px 16.5px 35px var(--shadow-krem);
+            box-shadow: 0 8px 30px oklch(0 0 0 / 0.08), 0 0 12px var(--neon-oklch), inset 0 0 12px var(--neon-oklch);
             background: var(--putih-base);
         }
 
@@ -156,13 +155,55 @@
         }
         .btn-spring:hover { transform: scale(1.05); }
 
+        /* ===== STYLE UNTUK AI CHAT BOT ===== */
+        #ai-chat-btn {
+            position: fixed; bottom: 20px; right: 20px; z-index: 9999;
+            background: var(--biru-base); border: none;
+            width: 60px; height: 60px; border-radius: 50%;
+            font-size: 28px; color: white; cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: 0.3s;
+            display: flex; justify-content: center; align-items: center;
+        }
+        #ai-chat-btn:hover { transform: scale(1.1); }
+        
+        #ai-chat-window {
+            position: fixed; bottom: 90px; right: 20px; z-index: 9999;
+            width: 340px; max-width: 90vw; height: 420px;
+            background: #fff; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            display: none; flex-direction: column; overflow: hidden;
+            border: 1px solid #ddd;
+        }
+        #ai-chat-window.open { display: flex; }
+
+        #ai-chat-header {
+            background: var(--biru-base); color: white;
+            padding: 14px 16px; font-weight: bold; display: flex;
+            justify-content: space-between; align-items: center;
+        }
+        #ai-chat-header button { background: transparent; border: none; color: white; font-size: 18px; cursor: pointer; }
+
+        #ai-chat-messages {
+            flex: 1; padding: 12px; overflow-y: auto; background: #f9f9f9;
+            display: flex; flex-direction: column; gap: 8px;
+        }
+        .msg-bot { align-self: flex-start; background: #eee; padding: 10px 14px; border-radius: 16px 16px 16px 0; max-width: 85%; font-size: 14px; color: #333; line-height: 1.5; }
+        .msg-user { align-self: flex-end; background: var(--biru-base); color: white; padding: 10px 14px; border-radius: 16px 16px 0 16px; max-width: 85%; font-size: 14px; line-height: 1.5; }
+
+        #ai-chat-input-area {
+            padding: 10px; border-top: 1px solid #ddd; display: flex; gap: 8px; background: #fff;
+        }
+        #ai-chat-input { flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 30px; outline: none; }
+        #ai-chat-send { background: var(--biru-base); color: white; border: none; padding: 8px 18px; border-radius: 30px; cursor: pointer; font-weight: bold; }
+
         @media (max-width: 600px) {
             body { padding: 10px; }
             .container-website { padding: 10px 10px 0 10px; }
             .floating-header { top: 10px; right: 10px; }
             .hamburger { width: 44px; height: 44px; font-size: 1.2rem; }
             .divider-section { margin: 3vh 0; gap: 2vh; }
-            .img-section, .profile-neon-border { border-radius: 40px; } /* Di HP radius dikurangi agar tetap proporsional */
+            .img-section { border-radius: 50px; }
+            .profile-neon-border { border-radius: 50px; }
+            #ai-chat-window { width: 90vw; right: 5vw; }
         }
     </style>
 </head>
@@ -185,7 +226,7 @@
         <div id="home" class="home-wrapper">
             
             <!-- HEADER page1.png -->
-            <div class="img-section">
+            <div class="img-section header-img">
                 <img src="page1.png" alt="Header ETNOSATEK" />
             </div>
 
@@ -197,7 +238,7 @@
             </div>
 
             <!-- BODY page2.png -->
-            <div class="img-section">
+            <div class="img-section body-img">
                 <img src="page2.png" alt="Body ETNOSATEK" />
             </div>
 
@@ -209,7 +250,7 @@
             </div>
 
             <!-- FOOTER page3.png -->
-            <div class="img-section">
+            <div class="img-section footer-img">
                 <img src="page3.png" alt="Footer ETNOSATEK" />
             </div>
 
@@ -217,6 +258,7 @@
 
         <!-- ===== HALAMAN PROFILE ===== -->
         <div id="profile" class="halaman">
+            <!-- Susunan Profile: 3 Gambar dengan Neon Border -->
             <div style="width: 100%; display: flex; flex-direction: column; gap: 4vh;">
                 <div class="img-section profile-neon-border">
                     <img src="profile1.png" alt="Profile 1" />
@@ -229,8 +271,9 @@
                 </div>
             </div>
 
+            <!-- Footer Global page3.png di bawah profile -->
             <div style="margin-top: 40px; width: 100%;">
-                <div class="img-section">
+                <div class="img-section footer-img">
                     <img src="page3.png" alt="Footer ETNOSATEK" />
                 </div>
             </div>
@@ -241,14 +284,31 @@
             <h2>Cara Main</h2>
             <a class="btn-spring" href="https://etnosatek-nazwa.vercel.app" target="_blank">Mulai Sekarang →</a>
             
+            <!-- Footer Global page3.png di bawah cara main -->
             <div style="margin-top: 30px; width: 100%;">
-                <div class="img-section">
+                <div class="img-section footer-img">
                     <img src="page3.png" alt="Footer ETNOSATEK" />
                 </div>
             </div>
         </div>
 
     </main>
+
+    <!-- ===== ELEMEN AI CHAT BOT ===== -->
+    <button id="ai-chat-btn">🤖</button>
+    <div id="ai-chat-window">
+        <div id="ai-chat-header">
+            <span>🤖 Asisten ETNOSATEK</span>
+            <button onclick="toggleChat()">✕</button>
+        </div>
+        <div id="ai-chat-messages">
+            <div class="msg-bot">Halo Kapten! Saya asisten AI ETNOSATEK. Silakan tanya apa saja tentang game, prasasti, GPS, atau literasi digital!</div>
+        </div>
+        <div id="ai-chat-input-area">
+            <input type="text" id="ai-chat-input" placeholder="Tulis pertanyaan..." onkeypress="if(event.key==='Enter') sendChatGemini()">
+            <button id="ai-chat-send" onclick="sendChatGemini()">Kirim</button>
+        </div>
+    </div>
 
     <script>
         // === Hamburger Logic ===
@@ -293,6 +353,65 @@
                 menu.classList.remove('open');
             }
         });
+
+        // =================================================================
+        // ===== KONFIGURASI AI CHAT =====
+        // =================================================================
+        // GANTI API KEY DI BAWAH INI DENGAN API KEY ANDA DARI GOOGLE GEMINI!
+        const API_KEY = "AQ.Ab8RN6Lp1n23WogjK7CI4D47guKyRplisx69OkCDNbY6nmDIXw"; 
+        
+        const SITE_URL = "https://fzzn8273.github.io/etnosatek/etnopage.html";
+
+        function toggleChat() {
+            document.getElementById('ai-chat-window').classList.toggle('open');
+        }
+
+        async function sendChatGemini() {
+            const input = document.getElementById('ai-chat-input');
+            const msg = input.value.trim();
+            if(!msg) return;
+
+            const container = document.getElementById('ai-chat-messages');
+            container.innerHTML += `<div class="msg-user">${msg}</div>`;
+            input.value = '';
+            container.scrollTop = container.scrollHeight;
+
+            const loadingDiv = document.createElement('div');
+            loadingDiv.className = 'msg-bot';
+            loadingDiv.innerText = "Mengetik...";
+            container.appendChild(loadingDiv);
+            container.scrollTop = container.scrollHeight;
+
+            try {
+                // Panggil API Google Gemini langsung
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        contents: [{
+                            parts: [{
+                                text: `Kamu adalah asisten resmi ETNOSATEK. Hanya jawab pertanyaan tentang ETNOSATEK, Prasasti Kedukan Bukit, sistem biner, GPS, literasi digital, dan Nazwa Ananda Devina. Jika di luar itu, tolak dengan sopan. Pertanyaan: ${msg}`
+                            }]
+                        }]
+                    })
+                });
+
+                const data = await response.json();
+                container.removeChild(loadingDiv);
+
+                if (data.candidates && data.candidates[0].content) {
+                    const reply = data.candidates[0].content.parts[0].text;
+                    container.innerHTML += `<div class="msg-bot">${reply}</div>`;
+                } else {
+                    container.innerHTML += `<div class="msg-bot">Maaf, saya sedang kelelahan. Coba tanya lagi nanti ya!</div>`;
+                }
+            } catch (error) {
+                container.removeChild(loadingDiv);
+                container.innerHTML += `<div class="msg-bot">Terjadi masalah teknis. Pastikan API Key sudah dimasukkan dengan benar!</div>`;
+                console.error(error);
+            }
+            container.scrollTop = container.scrollHeight;
+        }
     </script>
 </body>
 </html>
