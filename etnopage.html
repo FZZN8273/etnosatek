@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ETNOSATEK · Footer Melekat</title>
+    <title>ETNOSATEK</title>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
@@ -287,8 +287,7 @@
     </main>
 
     <!-- ===== ELEMEN AI CHAT BOT ===== -->
-    <!-- PERBAIKAN DI SINI: Tombol sudah punya onclick -->
-    <button id="ai-chat-btn" onclick="toggleChat()">🤖</button>
+    <button id="ai-chat-btn">🤖</button>
     <div id="ai-chat-window">
         <div id="ai-chat-header">
             <span>🤖 Asisten ETNOSATEK</span>
@@ -344,16 +343,14 @@
             }
         });
 
-        // =================================================================
-        // ===== KONFIGURASI AI CHAT =====
-        // =================================================================
-        const API_KEY = "AQ.Ab8RN6Lp1n23WogjK7CI4D47guKyRplisx69OkCDNbY6nmDIXw"; 
-        
-        function toggleChat() {
-            const window = document.getElementById('ai-chat-window');
-            window.classList.toggle('open');
-        }
+        // =============================================================
+        // ===== LOGIKA AI LOKAL BERBASIS JSON (TANPA API KEY) =====
+        // =============================================================
 
+        // 1. Siapkan wadah untuk menampung data JSON
+        let knowledgeBase = [];
+
+        // 2. Fungsi Chat yang akan dipanggil oleh tombol di HTML
         async function sendChatGemini() {
             const input = document.getElementById('ai-chat-input');
             const msg = input.value.trim();
@@ -366,38 +363,54 @@
 
             const loadingDiv = document.createElement('div');
             loadingDiv.className = 'msg-bot';
-            loadingDiv.innerText = "Mengetik...";
+            loadingDiv.innerText = "Membaca isi pikiran Kapten...";
             container.appendChild(loadingDiv);
             container.scrollTop = container.scrollHeight;
 
-            try {
-                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        contents: [{
-                            parts: [{
-                                text: `Kamu adalah asisten resmi ETNOSATEK. Hanya jawab pertanyaan tentang ETNOSATEK, Prasasti Kedukan Bukit, sistem biner, GPS, literasi digital, dan Nazwa Ananda Devina. Jika di luar itu, tolak dengan sopan. Pertanyaan: ${msg}`
-                            }]
-                        }]
-                    })
-                });
-
-                const data = await response.json();
+            // Simulasi jeda sebentar agar terasa alami
+            setTimeout(() => {
                 container.removeChild(loadingDiv);
-
-                if (data.candidates && data.candidates[0].content) {
-                    const reply = data.candidates[0].content.parts[0].text;
-                    container.innerHTML += `<div class="msg-bot">${reply}</div>`;
-                } else {
-                    container.innerHTML += `<div class="msg-bot">Maaf, saya sedang kelelahan. Coba tanya lagi nanti ya!</div>`;
-                }
-            } catch (error) {
-                container.removeChild(loadingDiv);
-                container.innerHTML += `<div class="msg-bot">Terjadi masalah teknis. Pastikan internet Anda stabil!</div>`;
-            }
-            container.scrollTop = container.scrollHeight;
+                const reply = getEtnosatekReply(msg);
+                container.innerHTML += `<div class="msg-bot">${reply}</div>`;
+                container.scrollTop = container.scrollHeight;
+            }, 600);
         }
+
+        // 3. Logika pencarian kata kunci di dalam JSON
+        function getEtnosatekReply(message) {
+            const q = message.toLowerCase();
+            let bestMatch = null;
+
+            // Loop semua data di knowledgeBase
+            for (let i = 0; i < knowledgeBase.length; i++) {
+                const item = knowledgeBase[i];
+                for (let j = 0; j < item.keywords.length; j++) {
+                    if (q.includes(item.keywords[j])) {
+                        bestMatch = item;
+                        break;
+                    }
+                }
+                if (bestMatch) break;
+            }
+
+            // Jika ada yang cocok, ambil jawaban secara acak dari list replies
+            if (bestMatch) {
+                const randomIndex = Math.floor(Math.random() * bestMatch.replies.length);
+                return bestMatch.replies[randomIndex];
+            }
+
+            // Jika tidak ada keyword yang cocok
+            return "Saya spesialis ETNOSATEK, Kapten! Silakan tanya seputar: 'Apa itu ETNOSATEK?', 'Prasasti & Sistem Biner', 'GPS & Navigasi Bintang', 'Literasi Digital (Hoaks/Phishing/Cyberbullying)', 'Cara Main', atau 'Profil Pembuat'.";
+        }
+
+        // 4. Saat halaman dimuat, ambil data dari knowledge.json
+        fetch('knowledge.json')
+          .then(res => res.json())
+          .then(data => { 
+              knowledgeBase = data; 
+              console.log("Knowledge base ETNOSATEK berhasil dimuat!");
+          })
+          .catch(err => console.error('Gagal memuat knowledge.json:', err));
     </script>
 </body>
 </html>
