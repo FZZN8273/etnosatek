@@ -150,14 +150,14 @@
         }
         .btn-spring:hover { transform: scale(1.05); }
 
-        /* ===== STYLE UNTUK AI CHAT BOT (DIJAMIN BISA DIKLIK DI HP) ===== */
+        /* ===== STYLE UNTUK AI CHAT BOT ===== */
         #ai-chat-btn {
             position: fixed; bottom: 20px; right: 20px; 
-            z-index: 99999 !important; /* Kunci biar ga nutup */
+            z-index: 99999 !important;
             background: var(--biru-base); border: none;
             width: 60px; height: 60px; border-radius: 50%;
             font-size: 28px; color: white; cursor: pointer;
-            pointer-events: auto !important; /* Paksa biar bisa diklik */
+            pointer-events: auto !important;
             box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: 0.3s;
             display: flex; justify-content: center; align-items: center;
         }
@@ -287,7 +287,8 @@
     </main>
 
     <!-- ===== ELEMEN AI CHAT BOT ===== -->
-    <button id="ai-chat-btn">🤖</button>
+    <!-- PERBAIKAN DI SINI: Tombol sudah punya onclick -->
+    <button id="ai-chat-btn" onclick="toggleChat()">🤖</button>
     <div id="ai-chat-window">
         <div id="ai-chat-header">
             <span>🤖 Asisten ETNOSATEK</span>
@@ -344,7 +345,7 @@
         });
 
         // =================================================================
-        // ===== KONFIGURASI AI CHAT (FIXED UNTUK HP) =====
+        // ===== KONFIGURASI AI CHAT =====
         // =================================================================
         const API_KEY = "AQ.Ab8RN6Lp1n23WogjK7CI4D47guKyRplisx69OkCDNbY6nmDIXw"; 
         
