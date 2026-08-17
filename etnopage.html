@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ETNOSATEK · Footer Melekat</title>
+    <title>ETNOSATEK</title>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
@@ -13,11 +13,10 @@
             --biru-base: oklch(0.45 0.12 240); 
             --krem-base: oklch(0.88 0.08 80);  
             --putih-base: oklch(1 0 0);        
-
-            --border-hitam-tipis: oklch(0 0 0 / 0.2);
-            --border-kuning: oklch(0.78 0.18 85);
-            --border-krem: oklch(0.92 0.06 80);
             --cokelat-batik: oklch(0.35 0.12 25);
+            
+            /* ===== WARNA SHADOW KREM SESUAI FOTO ===== */
+            --shadow-krem: oklch(0.75 0.15 85 / 0.5); /* Warna krem DBA252 dengan transparansi 0.5 */
             
             /* ===== NEON OKLCH UNTUK PROFILE ===== */
             --neon-oklch: oklch(0.75 0.25 290);
@@ -106,25 +105,29 @@
         
         .img-section {
             width: 100%;
-            border-radius: 12px;
+            /* PERUBAHAN UTAMA: Corner radius 90px & Shadow Krem */
+            border-radius: 90px;
             overflow: hidden;
-            line-height: 0;
             background: var(--putih-base);
+            
+            /* Drop Shadow Krem sesuai foto (10px x, -18px y, 16.5px blur, 35 spread) */
+            box-shadow: 10px -18px 16.5px 35px var(--shadow-krem);
+            
+            /* Agar gambar tidak terpotong oleh shadow */
+            position: relative;
+            z-index: 1;
         }
-        .img-section img { width: 100%; height: auto; display: block; }
-        
-        .header-img { border: 1px solid var(--border-hitam-tipis); }
-        .body-img   { border: 1px solid var(--border-kuning); }
-        .footer-img { 
-            border: 1px solid var(--border-krem);
-            background: var(--cokelat-batik);
+        .img-section img { 
+            width: 100%; 
+            height: auto; 
+            display: block; 
         }
 
         /* ===== BORDER NEON KHUSUS UNTUK PROFILE ===== */
         .profile-neon-border {
             border: 2px solid transparent;
-            border-radius: 12px;
-            box-shadow: 0 0 12px var(--neon-oklch), inset 0 0 12px var(--neon-oklch);
+            border-radius: 90px; /* Sesuaikan radius 90 juga */
+            box-shadow: 0 0 12px var(--neon-oklch), inset 0 0 12px var(--neon-oklch), 10px -18px 16.5px 35px var(--shadow-krem);
             background: var(--putih-base);
         }
 
@@ -159,6 +162,7 @@
             .floating-header { top: 10px; right: 10px; }
             .hamburger { width: 44px; height: 44px; font-size: 1.2rem; }
             .divider-section { margin: 3vh 0; gap: 2vh; }
+            .img-section, .profile-neon-border { border-radius: 40px; } /* Di HP radius dikurangi agar tetap proporsional */
         }
     </style>
 </head>
@@ -177,11 +181,11 @@
     <!-- ===== KONTAINER UTAMA ===== -->
     <main class="container-website">
 
-        <!-- ===== WRAPPER HOME (TETAP SAMA, TIDAK BERUBAH) ===== -->
+        <!-- ===== WRAPPER HOME ===== -->
         <div id="home" class="home-wrapper">
             
             <!-- HEADER page1.png -->
-            <div class="img-section header-img">
+            <div class="img-section">
                 <img src="page1.png" alt="Header ETNOSATEK" />
             </div>
 
@@ -193,7 +197,7 @@
             </div>
 
             <!-- BODY page2.png -->
-            <div class="img-section body-img">
+            <div class="img-section">
                 <img src="page2.png" alt="Body ETNOSATEK" />
             </div>
 
@@ -205,15 +209,14 @@
             </div>
 
             <!-- FOOTER page3.png -->
-            <div class="img-section footer-img">
+            <div class="img-section">
                 <img src="page3.png" alt="Footer ETNOSATEK" />
             </div>
 
         </div>
 
-        <!-- ===== HALAMAN PROFILE (GANTI DENGAN GAMBAR + NEON) ===== -->
+        <!-- ===== HALAMAN PROFILE ===== -->
         <div id="profile" class="halaman">
-            <!-- Susunan Profile: 3 Gambar dengan Neon Border -->
             <div style="width: 100%; display: flex; flex-direction: column; gap: 4vh;">
                 <div class="img-section profile-neon-border">
                     <img src="profile1.png" alt="Profile 1" />
@@ -226,9 +229,8 @@
                 </div>
             </div>
 
-            <!-- Footer Global page3.png di bawah profile -->
             <div style="margin-top: 40px; width: 100%;">
-                <div class="img-section footer-img">
+                <div class="img-section">
                     <img src="page3.png" alt="Footer ETNOSATEK" />
                 </div>
             </div>
@@ -239,9 +241,8 @@
             <h2>Cara Main</h2>
             <a class="btn-spring" href="https://etnosatek-nazwa.vercel.app" target="_blank">Mulai Sekarang →</a>
             
-            <!-- Footer Global page3.png di bawah cara main -->
             <div style="margin-top: 30px; width: 100%;">
-                <div class="img-section footer-img">
+                <div class="img-section">
                     <img src="page3.png" alt="Footer ETNOSATEK" />
                 </div>
             </div>
@@ -281,7 +282,7 @@
             });
         });
 
-        // === INISIALISASI AWAL (Agar langsung ke Home saat refresh) ===
+        // === INISIALISASI AWAL ===
         document.addEventListener('DOMContentLoaded', function() {
             homeWrapper.style.display = 'flex';
             halamanLain.forEach(page => page.classList.remove('active'));
