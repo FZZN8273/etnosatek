@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ETNOSATEK</title>
+    <title>ETNOSATEK · Footer Melekat</title>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
@@ -150,7 +150,7 @@
         }
         .btn-spring:hover { transform: scale(1.05); }
 
-        /* ===== STYLE UNTUK AI CHAT BOT ===== */
+        /* ===== STYLE UNTUK AI CHAT BOT (DIJAMIN BISA DIKLIK DI HP) ===== */
         #ai-chat-btn {
             position: fixed; bottom: 20px; right: 20px; 
             z-index: 99999 !important;
@@ -287,6 +287,7 @@
     </main>
 
     <!-- ===== ELEMEN AI CHAT BOT ===== -->
+    <!-- PERHATIKAN: Tombol ini akan dihubungkan lewat JS di bawah, jadi jangan hapus id-nya -->
     <button id="ai-chat-btn">🤖</button>
     <div id="ai-chat-window">
         <div id="ai-chat-header">
@@ -294,7 +295,7 @@
             <button onclick="toggleChat()">✕</button>
         </div>
         <div id="ai-chat-messages">
-            <div class="msg-bot">Halo Kapten! Saya asisten AI ETNOSATEK. Silakan tanya apa saja tentang game, prasasti, GPS, atau literasi digital!</div>
+            <div class="msg-bot">Halo Kapten! Saya asisten ETNOSATEK. Silakan tanya apa saja tentang game, prasasti, GPS, atau literasi digital!</div>
         </div>
         <div id="ai-chat-input-area">
             <input type="text" id="ai-chat-input" placeholder="Tulis pertanyaan..." onkeypress="if(event.key==='Enter') sendChatGemini()">
@@ -343,45 +344,23 @@
             }
         });
 
-        // =============================================================
-        // ===== LOGIKA AI LOKAL BERBASIS JSON (TANPA API KEY) =====
-        // =============================================================
-
-        // 1. Siapkan wadah untuk menampung data JSON
+        // =================================================================
+        // ===== AI CHAT BERBASIS JSON (Membaca knowledge.json) =====
+        // =================================================================
+        // 1. Tempat menyimpan data dari JSON
         let knowledgeBase = [];
 
-        // 2. Fungsi Chat yang akan dipanggil oleh tombol di HTML
-        async function sendChatGemini() {
-            const input = document.getElementById('ai-chat-input');
-            const msg = input.value.trim();
-            if(!msg) return;
-
-            const container = document.getElementById('ai-chat-messages');
-            container.innerHTML += `<div class="msg-user">${msg}</div>`;
-            input.value = '';
-            container.scrollTop = container.scrollHeight;
-
-            const loadingDiv = document.createElement('div');
-            loadingDiv.className = 'msg-bot';
-            loadingDiv.innerText = "Membaca isi pikiran Kapten...";
-            container.appendChild(loadingDiv);
-            container.scrollTop = container.scrollHeight;
-
-            // Simulasi jeda sebentar agar terasa alami
-            setTimeout(() => {
-                container.removeChild(loadingDiv);
-                const reply = getEtnosatekReply(msg);
-                container.innerHTML += `<div class="msg-bot">${reply}</div>`;
-                container.scrollTop = container.scrollHeight;
-            }, 600);
+        // 2. Fungsi buka/tutup chat (Sekarang dihubungkan lewat JS agar tidak error)
+        function toggleChat() {
+            document.getElementById('ai-chat-window').classList.toggle('open');
         }
 
-        // 3. Logika pencarian kata kunci di dalam JSON
+        // 3. Fungsi mencari jawaban berdasarkan kata kunci dari JSON
         function getEtnosatekReply(message) {
             const q = message.toLowerCase();
             let bestMatch = null;
 
-            // Loop semua data di knowledgeBase
+            // Loop semua data di knowledgeBase untuk mencari kata kunci yang cocok
             for (let i = 0; i < knowledgeBase.length; i++) {
                 const item = knowledgeBase[i];
                 for (let j = 0; j < item.keywords.length; j++) {
@@ -393,24 +372,63 @@
                 if (bestMatch) break;
             }
 
-            // Jika ada yang cocok, ambil jawaban secara acak dari list replies
+            // Jika ketemu, ambil jawaban secara acak dari list jawaban yang tersedia
             if (bestMatch) {
                 const randomIndex = Math.floor(Math.random() * bestMatch.replies.length);
                 return bestMatch.replies[randomIndex];
             }
 
-            // Jika tidak ada keyword yang cocok
+            // Jika tidak ada kata kunci yang cocok, berikan jawaban default
             return "Saya spesialis ETNOSATEK, Kapten! Silakan tanya seputar: 'Apa itu ETNOSATEK?', 'Prasasti & Sistem Biner', 'GPS & Navigasi Bintang', 'Literasi Digital (Hoaks/Phishing/Cyberbullying)', 'Cara Main', atau 'Profil Pembuat'.";
         }
 
-        // 4. Saat halaman dimuat, ambil data dari knowledge.json
+        // 4. Fungsi utama saat user mengirim chat
+        async function sendChatGemini() {
+            const input = document.getElementById('ai-chat-input');
+            const msg = input.value.trim();
+            if(!msg) return;
+
+            const container = document.getElementById('ai-chat-messages');
+            container.innerHTML += `<div class="msg-user">${msg}</div>`;
+            input.value = '';
+            container.scrollTop = container.scrollHeight;
+
+            // Tampilkan indikator sedang mengetik
+            const loadingDiv = document.createElement('div');
+            loadingDiv.className = 'msg-bot';
+            loadingDiv.innerText = "Mencari jawaban di perpustakaan Nusantara...";
+            container.appendChild(loadingDiv);
+            container.scrollTop = container.scrollHeight;
+
+            setTimeout(() => {
+                container.removeChild(loadingDiv);
+                // Panggil AI lokal berdasarkan JSON
+                const reply = getEtnosatekReply(msg);
+                container.innerHTML += `<div class="msg-bot">${reply}</div>`;
+                container.scrollTop = container.scrollHeight;
+            }, 600);
+        }
+
+        // 5. MUAT FILE knowledge.json SAAT HALAMAN DIBUKA!
         fetch('knowledge.json')
           .then(res => res.json())
           .then(data => { 
               knowledgeBase = data; 
-              console.log("Knowledge base ETNOSATEK berhasil dimuat!");
+              console.log('✅ Knowledge base ETNOSATEK berhasil dimuat!');
           })
-          .catch(err => console.error('Gagal memuat knowledge.json:', err));
+          .catch(err => console.error('❌ Gagal memuat knowledge.json:', err));
+
+        // ==============================================
+        // === PERBAIKAN TOMBOL AI (AGAR TIDAK ERROR) ===
+        // ==============================================
+        // Menghubungkan tombol robot dengan fungsi toggleChat langsung saat halaman siap
+        document.addEventListener('DOMContentLoaded', function() {
+            const aiBtn = document.getElementById('ai-chat-btn');
+            if(aiBtn) {
+                aiBtn.addEventListener('click', toggleChat);
+            }
+        });
+
     </script>
 </body>
 </html>
