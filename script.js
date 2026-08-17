@@ -1,10 +1,8 @@
 // ============================================================
-// SCRIPT.JS – ETNOSATEK (NAVIGASI + CHATBOT FIX TOTAL)
+// SCRIPT.JS – ETNOSATEK (FIX TOTAL, PAKAI knowledge.js)
 // ============================================================
 
-// ============================================================
-// 1. HAMBURGER NAVIGATION
-// ============================================================
+// ---- 1. HAMBURGER NAVIGATION ----
 const hamburgerBtn = document.getElementById('hamburgerBtn');
 const navDropdown = document.getElementById('navDropdown');
 
@@ -21,9 +19,7 @@ if (hamburgerBtn && navDropdown) {
     });
 }
 
-// ============================================================
-// 2. NAVIGASI MENU
-// ============================================================
+// ---- 2. NAVIGASI MENU ----
 const menuButtons = document.querySelectorAll('.nav-dropdown button');
 const homeWrapper = document.getElementById('home');
 const halamanLain = document.querySelectorAll('.halaman');
@@ -56,176 +52,125 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // ============================================================
-// 3. CHATBOT – KNOWLEDGE BASE (DUMMY + JSON FALLBACK)
+// 3. CHATBOT – MENGGUNAKAN window.knowledgeBase DARI knowledge.js
 // ============================================================
 
-// ---- 3a. Knowledge base awal (DUMMY) ----
-let knowledgeBase = [
-    // =============================================
-    // TOPIK PRASASTI
-    // =============================================
-    {
-        keywords: ['prasasti', 'kedukan bukit', 'sriwijaya', 'batu tua', 'peninggalan'],
-        replies: [
-            "Prasasti Kedukan Bukit adalah prasasti peninggalan Kerajaan Sriwijaya dari tahun 682 M, ditemukan di Palembang.",
-            "Isi prasasti menceritakan perjalanan Dapunta Hyang Sri Jayanasa beserta pasukannya.",
-            "Prasasti ini membuktikan nenek moyang kita sudah melek huruf dan matematika sejak abad ke-7."
-        ]
-    },
-    // =============================================
-    // TOPIK ANGKA NOL
-    // =============================================
-    {
-        keywords: ['nol', '0', 'angka nol', 'lingkaran kecil'],
-        replies: [
-            "Angka nol dalam prasasti berbentuk lingkaran kecil berongga, mirip angka 0 modern.",
-            "Konsep nol sudah dikenal di Nusantara sejak abad ke-7, jauh sebelum Eropa mengenalnya.",
-            "Tanpa angka nol, angka 604 tidak bisa dibedakan dengan 64."
-        ]
-    },
-    // =============================================
-    // TOPIK NILAI TEMPAT
-    // =============================================
-    {
-        keywords: ['nilai tempat', 'desimal', 'ratusan', 'puluhan', 'satuan'],
-        replies: [
-            "Sistem desimal dan nilai tempat sudah dipakai di prasasti, contoh angka 604.",
-            "Nilai tempat memungkinkan kita menulis angka besar dengan simbol yang sedikit."
-        ]
-    },
-    // =============================================
-    // TOPIK ETNOSATEK
-    // =============================================
-    {
-        keywords: ['etnosatek', 'game', 'permainan'],
-        replies: [
-            "ETNOSATEK adalah game edukasi yang menggabungkan sejarah, matematika (sistem biner), GPS, dan literasi digital.",
-            "Kamu bisa bermain di https://etnosatek-nazwa.vercel.app"
-        ]
-    },
-    // =============================================
-    // TOPIK LITERASI DIGITAL
-    // =============================================
-    {
-        keywords: ['literasi digital', 'hoaks', 'phishing', 'cyberbullying'],
-        replies: [
-            "Literasi digital adalah kemampuan menggunakan teknologi dengan bijak. Hindari hoaks, phishing, dan cyberbullying.",
-            "Selalu cek kebenaran informasi sebelum membagikannya."
-        ]
-    },
-    // =============================================
-    // TOPIK GPS & NAVIGASI
-    // =============================================
-    {
-        keywords: ['gps', 'navigasi', 'bintang'],
-        replies: [
-            "GPS menggunakan satelit untuk menentukan lokasi. Nenek moyang kita menggunakan navigasi bintang.",
-            "Di ETNOSATEK, kamu belajar menggabungkan teknologi modern dengan kearifan lokal."
-        ]
-    },
-    // =============================================
-    // TOPIK HI / HALO / SALAM
-    // =============================================
-    {
-        keywords: ['hi', 'hai', 'halo', 'hello', 'assalamualaikum', 'salam'],
-        replies: [
-            "Halo, Kapten! Siap berlayar di lautan ilmu?",
-            "Hai! Selamat datang di dek kapal Etnosatek. Mau belajar apa hari ini?",
-            "Wa'alaikumsalam, Kapten! Silakan bertanya seputar ETNOSATEK."
-        ]
-    },
-    // =============================================
-    // TOPIK GURU / PEMBIMBING
-    // =============================================
-    {
-        keywords: ['guru', 'pembimbing', 'bu okta', 'okta', 'mama umar20'],
-        replies: [
-            "Guru pembimbing ETNOSATEK adalah Bu Okta, guru TIK SMP Muhammadiyah 17 Tangsel. Instagram: @mama.umar20",
-            "Bu Okta adalah guru TIK dan pembimbing Nazwa dalam membuat ETNOSATEK. Follow @mama.umar20 ya!",
-            "ETNOSATEK dibimbing oleh Bu Okta, guru TIK yang sangat suportif."
-        ]
-    },
-    // =============================================
-    // TOPIK NAZWA / PEMBUAT
-    // =============================================
-    {
-        keywords: ['nazwa', 'nazwa ananda', 'ananda devina', 'pembuat', 'pencipta', 'kreator'],
-        replies: [
-            "Nazwa Ananda Devina adalah siswi SMP Muhammadiyah 17 Tangsel, pencipta ETNOSATEK. Instagram: @ananda_dev2",
-            "Nazwa adalah kapten utama ETNOSATEK. Inovator muda yang luar biasa! Follow @ananda_dev2",
-            "Nazwa Ananda Devina, sang pencipta ETNOSATEK. Beliau juga aktif di TMS dan organisasi sekolah."
-        ]
-    }
-];
-
-// ---- 3b. Coba muat knowledge.json jika ada (GABUNG, BUKAN OVERWRITE) ----
-fetch('knowledge.json')
-    .then(function(res) {
-        if (res.ok) return res.json();
-        else throw new Error('File tidak ditemukan');
-    })
-    .then(function(data) {
-        if (Array.isArray(data) && data.length > 0) {
-            // ❌ JANGAN OVERWRITE!
-            // knowledgeBase = data;
-            
-            // ✅ GABUNGKAN data JSON dengan knowledgeBase yang sudah ada
-            knowledgeBase = knowledgeBase.concat(data);
-            console.log('✅ Knowledge base dari JSON berhasil digabung! Total: ' + knowledgeBase.length + ' item');
+// ---- 3a. Cek apakah knowledgeBase tersedia ----
+if (typeof window.knowledgeBase !== 'undefined' && window.knowledgeBase.length > 0) {
+    console.log('✅ Knowledge base siap! Total topik: ' + window.knowledgeBase.length);
+} else {
+    console.warn('⚠️ knowledge.js tidak ditemukan atau kosong!');
+    // Fallback jika knowledge.js gagal
+    window.knowledgeBase = [
+        {
+            keywords: ['prasasti', 'kedukan bukit'],
+            replies: ['Prasasti Kedukan Bukit adalah peninggalan Sriwijaya.']
         }
-    })
-    .catch(function(err) {
-        console.warn('ℹ️ Gagal memuat knowledge.json, pakai data bawaan.');
-    });
+    ];
+}
 
-// ============================================================
-// 3c. FUNGSI PENCARI JAWABAN (DENGAN LOGGING)
-// ============================================================
+// ---- 3b. Fungsi untuk menampilkan daftar topik ----
+function getTopicList() {
+    var topics = [];
+    var seen = new Set();
+    for (var i = 0; i < window.knowledgeBase.length; i++) {
+        var item = window.knowledgeBase[i];
+        if (item.keywords && item.keywords.length > 0) {
+            // Ambil keyword pertama sebagai judul topik
+            var title = item.keywords[0];
+            // Kapitalisasi huruf pertama
+            title = title.charAt(0).toUpperCase() + title.slice(1);
+            if (!seen.has(title)) {
+                seen.add(title);
+                topics.push(title);
+            }
+        }
+    }
+    return topics;
+}
+
+// ---- 3c. Fungsi cek perintah khusus (!topik) ----
+function cekPerintahKhusus(pesan) {
+    var q = pesan.toLowerCase().trim();
+    if (q === '!topik' || q === 'topik' || q === 'daftar topik' || q === 'topik apa aja') {
+        var list = getTopicList();
+        var total = list.length;
+        var reply = '📋 *DAFTAR ' + total + ' TOPIK YANG DIDUKUNG:*\n\n';
+        for (var i = 0; i < list.length; i++) {
+            reply += (i+1) + '. ' + list[i] + '\n';
+        }
+        reply += '\n💡 *Cara tanya:* cukup ketik kata kunci, misal "prasasti", "nazwa", "hoaks", atau "biner".';
+        return reply;
+    }
+    return null;
+}
+
+// ---- 3d. Fungsi pencarian jawaban dengan skor ----
 function getEtnosatekReply(message) {
     var q = message.toLowerCase().trim();
-    console.log('🔍 Mencari jawaban untuk: "' + q + '"');
-    console.log('📚 Total knowledge base: ' + knowledgeBase.length + ' item');
-
+    var words = q.split(/\s+/);
     var bestMatch = null;
-    var matchedKeyword = null;
+    var bestScore = 0;
 
-    for (var i = 0; i < knowledgeBase.length; i++) {
-        var item = knowledgeBase[i];
+    for (var i = 0; i < window.knowledgeBase.length; i++) {
+        var item = window.knowledgeBase[i];
         var keywords = item.keywords || [];
         var replies = item.replies || item.answers || [];
+        var score = 0;
 
         for (var j = 0; j < keywords.length; j++) {
             var keyword = keywords[j].toLowerCase();
+            // Cek apakah keyword ada di dalam pertanyaan (includes)
             if (q.indexOf(keyword) !== -1) {
-                bestMatch = replies;
-                matchedKeyword = keyword;
-                console.log('✅ Match ditemukan: "' + keyword + '" di item ke-' + i);
-                break;
+                score += 10;
+            }
+            // Cek per kata (lebih fleksibel)
+            for (var k = 0; k < words.length; k++) {
+                if (words[k].length > 2) {
+                    if (keyword.indexOf(words[k]) !== -1) {
+                        score += 5;
+                    }
+                    if (words[k].indexOf(keyword) !== -1) {
+                        score += 8;
+                    }
+                }
             }
         }
-        if (bestMatch) break;
+
+        if (score > bestScore) {
+            bestScore = score;
+            bestMatch = replies;
+        }
     }
 
     if (bestMatch && bestMatch.length > 0) {
         var rand = Math.floor(Math.random() * bestMatch.length);
-        var reply = bestMatch[rand];
-        console.log('📤 Jawaban: "' + reply.substring(0, 50) + '..."');
-        return reply;
+        return bestMatch[rand];
     }
 
-    console.log('❌ Tidak ada match, pakai fallback.');
-    return "Saya spesialis ETNOSATEK, Kapten! Silakan tanya seputar: 'Prasasti Kedukan Bukit', 'Angka Nol', 'Nilai Tempat', 'ETNOSATEK', 'Literasi Digital', atau 'GPS'.";
+    // Fallback
+    var totalTopik = window.knowledgeBase.length;
+    return "Maaf, saya belum paham pertanyaan itu. Saya mendukung " + totalTopik + " topik. Ketik *!topik* untuk melihat daftar lengkapnya.";
 }
 
-// ============================================================
-// 3d. FUNGSI TOGGLE CHAT (GLOBAL)
-// ============================================================
+// ---- 3e. Fungsi toggle chat (GLOBAL) ----
 window.toggleChat = function() {
     console.log("🤖 Tombol diklik!");
     var win = document.getElementById('ai-chat-window');
     if (win) {
         if (win.style.display === 'none' || win.style.display === '') {
             win.style.display = 'flex';
+            // Tampilkan pesan sambutan dengan jumlah topik jika chat baru dibuka
+            var container = document.getElementById('ai-chat-messages');
+            // Hanya tambahkan jika belum ada pesan (misal hanya pesan default)
+            if (container && container.children.length === 1) {
+                var total = window.knowledgeBase.length;
+                var botMsg = document.createElement('div');
+                botMsg.className = 'msg-bot';
+                botMsg.style.cssText = 'align-self:flex-start; background:#eee; padding:10px 14px; border-radius:16px 16px 16px 0; max-width:85%; font-size:14px; color:#333; line-height:1.5;';
+                botMsg.textContent = 'Halo Kapten! Saya asisten ETNOSATEK. Saya mendukung ' + total + ' topik. Ketik *!topik* untuk melihat daftar lengkapnya.';
+                container.appendChild(botMsg);
+            }
         } else {
             win.style.display = 'none';
         }
@@ -234,9 +179,7 @@ window.toggleChat = function() {
     }
 };
 
-// ============================================================
-// 3e. FUNGSI KIRIM PESAN (GLOBAL)
-// ============================================================
+// ---- 3f. Fungsi kirim pesan (GLOBAL) ----
 window.sendChatGemini = function() {
     var input = document.getElementById('ai-chat-input');
     var msg = input.value.trim();
@@ -265,7 +208,11 @@ window.sendChatGemini = function() {
 
     setTimeout(function() {
         container.removeChild(loadingDiv);
-        var reply = getEtnosatekReply(msg);
+
+        // Cek perintah khusus dulu
+        var specialReply = cekPerintahKhusus(msg);
+        var reply = specialReply || getEtnosatekReply(msg);
+
         var botDiv = document.createElement('div');
         botDiv.className = 'msg-bot';
         botDiv.style.cssText = 'align-self:flex-start; background:#eee; padding:10px 14px; border-radius:16px 16px 16px 0; max-width:85%; font-size:14px; color:#333; line-height:1.5;';
@@ -275,9 +222,7 @@ window.sendChatGemini = function() {
     }, 500);
 };
 
-// ============================================================
-// 3f. EVENT LISTENER UNTUK TOMBOL KIRIM
-// ============================================================
+// ---- 3g. Event listener untuk tombol kirim ----
 document.addEventListener('DOMContentLoaded', function() {
     var sendBtn = document.getElementById('ai-chat-send');
     if (sendBtn) {
@@ -285,3 +230,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     console.log('✅ Chatbot ETNOSATEK siap!');
 });
+
+// ---- 3h. Pastikan fungsi global ----
+window.getTopicList = getTopicList;
+window.cekPerintahKhusus = cekPerintahKhusus;
+window.getEtnosatekReply = getEtnosatekReply;
