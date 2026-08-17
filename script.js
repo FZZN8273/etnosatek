@@ -158,9 +158,7 @@ let knowledgeBase = [
     }
 ];
 
-// ============================================================
-// 3b. MUAT KNOWLEDGE.JSON (GABUNG, BUKAN OVERWRITE!)
-// ============================================================
+// ---- 3b. Coba muat knowledge.json jika ada (GABUNG, BUKAN OVERWRITE) ----
 fetch('knowledge.json')
     .then(function(res) {
         if (res.ok) return res.json();
@@ -171,7 +169,7 @@ fetch('knowledge.json')
             // ❌ JANGAN OVERWRITE!
             // knowledgeBase = data;
             
-            // ✅ GABUNGKAN dengan data yang sudah ada
+            // ✅ GABUNGKAN data JSON dengan knowledgeBase yang sudah ada
             knowledgeBase = knowledgeBase.concat(data);
             console.log('✅ Knowledge base dari JSON berhasil digabung! Total: ' + knowledgeBase.length + ' item');
         }
