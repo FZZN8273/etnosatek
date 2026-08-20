@@ -1,5 +1,5 @@
 // ============================================================
-// SCRIPT.JS – ETNOSATEK (FIX TOTAL, PAKAI knowledge.js)
+// SCRIPT.JS – ETNOSATEK (FIX TOTAL + FITUR BANTUAN)
 // ============================================================
 
 // ---- 1. HAMBURGER NAVIGATION ----
@@ -60,7 +60,6 @@ if (typeof window.knowledgeBase !== 'undefined' && window.knowledgeBase.length >
     console.log('✅ Knowledge base siap! Total topik: ' + window.knowledgeBase.length);
 } else {
     console.warn('⚠️ knowledge.js tidak ditemukan atau kosong!');
-    // Fallback jika knowledge.js gagal
     window.knowledgeBase = [
         {
             keywords: ['prasasti', 'kedukan bukit'],
@@ -69,16 +68,27 @@ if (typeof window.knowledgeBase !== 'undefined' && window.knowledgeBase.length >
     ];
 }
 
-// ---- 3b. Fungsi untuk menampilkan daftar topik ----
+// ---- 3b. Fungsi untuk menampilkan daftar topik (FILTER KATA KASAR) ----
 function getTopicList() {
     var topics = [];
     var seen = new Set();
+    // Daftar kata kasar yang ingin disembunyikan dari daftar topik
+    var excludeKeywords = ['kata kasar', 'goblok', 'bodoh', 'tolol', 'anjing', 'bangsat', 'bego', 'kampret', 'dungu', 'sialan', 'brengsek', 'setan', 'bejat', 'anjir', 'anjay', 'kontol', 'memek', 'fuck', 'shit', 'asshole', 'bitch'];
+    
     for (var i = 0; i < window.knowledgeBase.length; i++) {
         var item = window.knowledgeBase[i];
         if (item.keywords && item.keywords.length > 0) {
-            // Ambil keyword pertama sebagai judul topik
+            // Lewati jika salah satu keyword termasuk dalam excludeKeywords
+            var isExcluded = false;
+            for (var j = 0; j < item.keywords.length; j++) {
+                if (excludeKeywords.indexOf(item.keywords[j]) !== -1) {
+                    isExcluded = true;
+                    break;
+                }
+            }
+            if (isExcluded) continue;
+            
             var title = item.keywords[0];
-            // Kapitalisasi huruf pertama
             title = title.charAt(0).toUpperCase() + title.slice(1);
             if (!seen.has(title)) {
                 seen.add(title);
@@ -89,7 +99,7 @@ function getTopicList() {
     return topics;
 }
 
-// ---- 3c. Fungsi cek perintah khusus (!topik) ----
+// ---- 3c. Fungsi cek perintah khusus (!topik, !bantuan) ----
 function cekPerintahKhusus(pesan) {
     var q = pesan.toLowerCase().trim();
     if (q === '!topik' || q === 'topik' || q === 'daftar topik' || q === 'topik apa aja') {
@@ -101,6 +111,14 @@ function cekPerintahKhusus(pesan) {
         }
         reply += '\n💡 *Cara tanya:* cukup ketik kata kunci, misal "prasasti", "nazwa", "hoaks", atau "biner".';
         return reply;
+    }
+    else if (q === '!bantuan' || q === 'bantuan' || q === 'help' || q === 'tolong') {
+        return "📖 *PANDUAN PENGGUNAAN AI ETNOSATEK*\n\n" +
+               "1. Tanyakan apa saja tentang ETNOSATEK, Prasasti, navigasi bintang, literasi digital, dll.\n" +
+               "2. Gunakan kata kunci seperti: *prasasti*, *nazwa*, *hoaks*, *biner*, *gps*, *cara main*, dll.\n" +
+               "3. Ketik *!topik* untuk melihat daftar semua topik yang saya kuasai.\n" +
+               "4. Ketik *!bantuan* untuk melihat panduan ini lagi.\n" +
+               "5. Saya akan menjawab dengan ramah dan informatif. Selamat bertanya!";
     }
     return null;
 }
@@ -120,11 +138,9 @@ function getEtnosatekReply(message) {
 
         for (var j = 0; j < keywords.length; j++) {
             var keyword = keywords[j].toLowerCase();
-            // Cek apakah keyword ada di dalam pertanyaan (includes)
             if (q.indexOf(keyword) !== -1) {
                 score += 10;
             }
-            // Cek per kata (lebih fleksibel)
             for (var k = 0; k < words.length; k++) {
                 if (words[k].length > 2) {
                     if (keyword.indexOf(words[k]) !== -1) {
@@ -148,9 +164,8 @@ function getEtnosatekReply(message) {
         return bestMatch[rand];
     }
 
-    // Fallback
     var totalTopik = window.knowledgeBase.length;
-    return "Maaf, saya belum paham pertanyaan itu. Saya mendukung " + totalTopik + " topik. Ketik *!topik* untuk melihat daftar lengkapnya.";
+    return "Maaf, saya belum paham pertanyaan itu. Saya mendukung " + totalTopik + " topik. Ketik *!bantuan* untuk panduan atau *!topik* untuk daftar topik.";
 }
 
 // ---- 3e. Fungsi toggle chat (GLOBAL) ----
@@ -160,15 +175,13 @@ window.toggleChat = function() {
     if (win) {
         if (win.style.display === 'none' || win.style.display === '') {
             win.style.display = 'flex';
-            // Tampilkan pesan sambutan dengan jumlah topik jika chat baru dibuka
             var container = document.getElementById('ai-chat-messages');
-            // Hanya tambahkan jika belum ada pesan (misal hanya pesan default)
             if (container && container.children.length === 1) {
                 var total = window.knowledgeBase.length;
                 var botMsg = document.createElement('div');
                 botMsg.className = 'msg-bot';
                 botMsg.style.cssText = 'align-self:flex-start; background:#eee; padding:10px 14px; border-radius:16px 16px 16px 0; max-width:85%; font-size:14px; color:#333; line-height:1.5;';
-                botMsg.textContent = 'Halo Kapten! Saya asisten ETNOSATEK. Saya mendukung ' + total + ' topik. Ketik *!topik* untuk melihat daftar lengkapnya.';
+                botMsg.textContent = 'Halo Kapten! Saya asisten ETNOSATEK. Saya mendukung ' + total + ' topik. Ketik *!bantuan* untuk panduan atau *!topik* untuk daftar topik.';
                 container.appendChild(botMsg);
             }
         } else {
@@ -188,7 +201,6 @@ window.sendChatGemini = function() {
     var container = document.getElementById('ai-chat-messages');
     if (!container) return;
 
-    // Tambah pesan user
     var userDiv = document.createElement('div');
     userDiv.className = 'msg-user';
     userDiv.style.cssText = 'align-self:flex-end; background:#4a6fa5; color:white; padding:10px 14px; border-radius:16px 16px 0 16px; max-width:85%; font-size:14px; line-height:1.5;';
@@ -198,7 +210,6 @@ window.sendChatGemini = function() {
     input.value = '';
     container.scrollTop = container.scrollHeight;
 
-    // Loading
     var loadingDiv = document.createElement('div');
     loadingDiv.className = 'msg-bot';
     loadingDiv.style.cssText = 'align-self:flex-start; background:#eee; padding:10px 14px; border-radius:16px 16px 16px 0; max-width:85%; font-size:14px; color:#333; line-height:1.5;';
@@ -208,11 +219,8 @@ window.sendChatGemini = function() {
 
     setTimeout(function() {
         container.removeChild(loadingDiv);
-
-        // Cek perintah khusus dulu
         var specialReply = cekPerintahKhusus(msg);
         var reply = specialReply || getEtnosatekReply(msg);
-
         var botDiv = document.createElement('div');
         botDiv.className = 'msg-bot';
         botDiv.style.cssText = 'align-self:flex-start; background:#eee; padding:10px 14px; border-radius:16px 16px 16px 0; max-width:85%; font-size:14px; color:#333; line-height:1.5;';
