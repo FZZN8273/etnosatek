@@ -1,5 +1,5 @@
 // ============================================================
-// knowledge.js – 52+ TOPIK ETNOSATEK (LENGKAP)
+// knowledge.js – 57 TOPIK ETNOSATEK (LENGKAP + FINAL)
 // ============================================================
 
 window.knowledgeBase = [
@@ -577,10 +577,10 @@ window.knowledgeBase = [
     },
 
     // =============================================
-    // 45. FILTER KATA KASAR
+    // 45. FILTER KATA KASAR (DIUBAH BIAR GAK MUNCUL DI DAFTAR TOPIK)
     // =============================================
     {
-        keywords: ['goblok', 'bodoh', 'tolol', 'anjing', 'bangsat', 'bego', 'kampret', 'dungu', 'sialan', 'brengsek', 'setan', 'bejat', 'anjir', 'anjay', 'kontol', 'memek', 'fuck', 'shit', 'asshole', 'bitch'],
+        keywords: ['kata kasar', 'goblok', 'bodoh', 'tolol', 'anjing', 'bangsat', 'bego', 'kampret', 'dungu', 'sialan', 'brengsek', 'setan', 'bejat', 'anjir', 'anjay', 'kontol', 'memek', 'fuck', 'shit', 'asshole', 'bitch'],
         replies: [
             "Aduh, Kapten jangan berkata kasar ya. Kita di sini untuk belajar dan bersenang-senang. Yuk tanya yang baik-baik tentang ETNOSATEK.",
             "Maaf, saya tidak bisa menanggapi kata-kata kasar. Mari kita jaga perkataan kita. Silakan tanya tentang Prasasti, Rasi Bintang, atau Literasi Digital.",
@@ -603,7 +603,7 @@ window.knowledgeBase = [
     },
 
     // =============================================
-    // 47. SEJARAH NUSANTARA (TAMBAHAN)
+    // 47. SEJARAH NUSANTARA
     // =============================================
     {
         keywords: ['sejarah nusantara', 'peradaban nusantara', 'kerajaan kuno', 'nenek moyang', 'zaman dulu'],
@@ -615,7 +615,7 @@ window.knowledgeBase = [
     },
 
     // =============================================
-    // 48. PELAUT NUSANTARA (TAMBAHAN)
+    // 48. PELAUT NUSANTARA
     // =============================================
     {
         keywords: ['pelaut nusantara', 'pelayaran', 'kapal', 'perahu', 'jalur rempah', 'perdagangan laut'],
@@ -627,7 +627,7 @@ window.knowledgeBase = [
     },
 
     // =============================================
-    // 49. ASTRONOMI NUSANTARA (TAMBAHAN)
+    // 49. ASTRONOMI NUSANTARA
     // =============================================
     {
         keywords: ['astronomi nusantara', 'ilmu langit', 'zodiak', 'kartika', 'planet', 'bulan'],
@@ -639,7 +639,7 @@ window.knowledgeBase = [
     },
 
     // =============================================
-    // 50. MATA ANGIN (TAMBAHAN)
+    // 50. MATA ANGIN
     // =============================================
     {
         keywords: ['mata angin', 'arah timur', 'arah barat', 'arah utara', 'arah selatan', 'kompas'],
@@ -651,7 +651,7 @@ window.knowledgeBase = [
     },
 
     // =============================================
-    // 51. CODING / PEMROGRAMAN (TAMBAHAN)
+    // 51. CODING / PEMROGRAMAN
     // =============================================
     {
         keywords: ['coding', 'pemrograman', 'program', 'javascript', 'python', 'html', 'css', 'kode'],
@@ -663,7 +663,7 @@ window.knowledgeBase = [
     },
 
     // =============================================
-    // 52. AI / TEKNOLOGI MASA DEPAN (TAMBAHAN)
+    // 52. AI / TEKNOLOGI MASA DEPAN
     // =============================================
     {
         keywords: ['AI', 'artificial intelligence', 'machine learning', 'robot', 'otomasi', 'teknologi masa depan'],
@@ -675,7 +675,7 @@ window.knowledgeBase = [
     },
 
     // =============================================
-    // 53. PETA / KARTOGRAFI (TAMBAHAN)
+    // 53. PETA / KARTOGRAFI
     // =============================================
     {
         keywords: ['peta', 'kartografi', 'atlas', 'geografi', 'pemetaan'],
@@ -687,7 +687,7 @@ window.knowledgeBase = [
     },
 
     // =============================================
-    // 54. INTERNET / WIFI (TAMBAHAN)
+    // 54. INTERNET / WIFI
     // =============================================
     {
         keywords: ['internet', 'wifi', 'jaringan', 'server', 'website', 'aplikasi'],
@@ -699,7 +699,7 @@ window.knowledgeBase = [
     },
 
     // =============================================
-    // 55. KENAPA BINER? (TAMBAHAN)
+    // 55. KENAPA BINER?
     // =============================================
     {
         keywords: ['kenapa biner', 'mengapa biner', 'sederhananya biner', 'logika biner', 'kenapa 0 dan 1'],
@@ -711,7 +711,7 @@ window.knowledgeBase = [
     },
 
     // =============================================
-    // 56. KENAPA INOVASI? (TAMBAHAN)
+    // 56. KENAPA INOVASI?
     // =============================================
     {
         keywords: ['kenapa inovatif', 'alasan inovasi', 'keunikan etnosatek', 'kenapa etnosatek beda'],
@@ -723,7 +723,7 @@ window.knowledgeBase = [
     },
 
     // =============================================
-    // 57. REVIEW GAME (TAMBAHAN)
+    // 57. REVIEW GAME
     // =============================================
     {
         keywords: ['game bagus', 'game jelek', 'review game', 'kualitas game', 'penilaian game'],
