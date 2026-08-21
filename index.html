@@ -3,9 +3,63 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ETNOSATEK</title> <link rel="icon" type="image/png" href="favicon.png">
+
+    <!-- ===== SEO & META ===== -->
+    <title>ETNOSATEK – Game Edukasi Literasi Digital & Budaya Nusantara</title>
+    <meta name="description" content="ETNOSATEK adalah game edukasi interaktif yang mengajak kamu menjelajahi Prasasti Kedukan Bukit, sistem biner, navigasi bintang, dan literasi digital. Belajar sambil bermain!" />
+    <meta name="keywords" content="ETNOSATEK, game edukasi, literasi digital, prasasti kedukan bukit, sistem biner, navigasi bintang, hoaks, phishing, cyberbullying, Indonesia, budaya nusantara" />
+    <meta name="author" content="Nazwa Ananda Devina" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://fzzn8273.github.io/etnosatek/" />
+
+    <!-- ===== FAVICON ===== -->
+    <link rel="icon" type="image/png" href="favicon.png" />
+
+    <!-- ===== OPEN GRAPH (Facebook, WhatsApp, dll) ===== -->
+    <meta property="og:title" content="ETNOSATEK – Game Edukasi Literasi Digital & Budaya Nusantara" />
+    <meta property="og:description" content="Jelajahi Prasasti Kedukan Bukit, pelajari sistem biner, navigasi bintang, dan literasi digital lewat game seru! Cocok untuk pelajar SMP/SMA." />
+    <meta property="og:image" content="https://fzzn8273.github.io/etnosatek/page1.png" />
+    <meta property="og:url" content="https://fzzn8273.github.io/etnosatek/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="ETNOSATEK" />
+    <meta property="og:locale" content="id_ID" />
+
+    <!-- ===== TWITTER CARD ===== -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="ETNOSATEK – Game Edukasi Literasi Digital & Budaya Nusantara" />
+    <meta name="twitter:description" content="Belajar prasasti, biner, navigasi bintang, dan literasi digital dengan cara seru! Mainkan sekarang." />
+    <meta name="twitter:image" content="https://fzzn8273.github.io/etnosatek/page1.png" />
+
+    <!-- ===== THEME COLOR UNTUK MOBILE ===== -->
+    <meta name="theme-color" content="#4a6fa5" />
+
+    <!-- ===== STRUCTURED DATA (JSON-LD) ===== -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "ETNOSATEK",
+      "url": "https://fzzn8273.github.io/etnosatek/",
+      "description": "Game edukasi interaktif tentang literasi digital, prasasti, sistem biner, dan navigasi bintang.",
+      "author": {
+        "@type": "Person",
+        "name": "Nazwa Ananda Devina"
+      },
+      "audience": {
+        "@type": "Audience",
+        "audienceType": "Pelajar SMP/SMA"
+      },
+      "about": {
+        "@type": "Thing",
+        "name": "Edukasi Digital & Budaya Nusantara"
+      }
+    }
+    </script>
+
+    <!-- ===== FONTS & ICONS ===== -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
     <style>
         /* ===== OKLCH PALET ===== */
         :root {
@@ -47,6 +101,7 @@
             position: relative;
         }
 
+        /* ===== FLOATING HAMBURGER ===== */
         .floating-header {
             position: fixed;
             top: 20px;
@@ -156,12 +211,12 @@
 <body>
 
     <!-- ===== FLOATING HAMBURGER ===== -->
-    <header class="floating-header">
-        <button class="hamburger" id="hamburgerBtn"><i class="fas fa-bars"></i></button>
-        <nav class="nav-dropdown" id="navDropdown">
-            <button data-target="home"><i class="fas fa-home"></i> Home</button>
-            <button data-target="profile"><i class="fas fa-user"></i> Profile</button>
-            <button data-target="howtoplay"><i class="fas fa-gamepad"></i> Cara main</button>
+    <header class="floating-header" role="navigation" aria-label="Menu Utama">
+        <button class="hamburger" id="hamburgerBtn" aria-label="Buka menu navigasi"><i class="fas fa-bars"></i></button>
+        <nav class="nav-dropdown" id="navDropdown" aria-label="Navigasi">
+            <button data-target="home" aria-label="Home"><i class="fas fa-home"></i> Home</button>
+            <button data-target="profile" aria-label="Profile"><i class="fas fa-user"></i> Profile</button>
+            <button data-target="howtoplay" aria-label="Cara main"><i class="fas fa-gamepad"></i> Cara main</button>
         </nav>
     </header>
 
@@ -171,7 +226,7 @@
         <!-- ===== WRAPPER HOME ===== -->
         <div id="home" class="home-wrapper">
             <div class="img-section header-img">
-                <img src="page1.png" alt="Header ETNOSATEK" />
+                <img src="page1.png" alt="Header ETNOSATEK - Game Edukasi Budaya Nusantara" />
             </div>
             <div class="divider-section">
                 <div class="dashed-line large"></div>
@@ -180,7 +235,7 @@
                 <div class="dashed-line"></div>
             </div>
             <div class="img-section body-img">
-                <img src="page2.png" alt="Body ETNOSATEK" />
+                <img src="page2.png" alt="Body ETNOSATEK - Jelajahi Prasasti dan Sistem Biner" />
             </div>
             <div class="divider-section">
                 <div class="dashed-line small"></div>
@@ -189,21 +244,21 @@
                 <div class="dashed-line"></div>
             </div>
             <div class="img-section footer-img">
-                <img src="page3.png" alt="Footer ETNOSATEK" />
+                <img src="page3.png" alt="Footer ETNOSATEK - Literasi Digital dan Navigasi Bintang" />
             </div>
         </div>
 
         <!-- ===== HALAMAN PROFILE ===== -->
-        <div id="profile" class="halaman">
+        <div id="profile" class="halaman" role="region" aria-label="Profil">
             <div style="width: 100%; display: flex; flex-direction: column; gap: 4vh;">
                 <div class="img-section profile-neon-border">
-                    <img src="profile1.png" alt="Profile 1" />
+                    <img src="profile1.png" alt="Profil 1 - Nazwa Ananda Devina" />
                 </div>
                 <div class="img-section profile-neon-border">
-                    <img src="profile2.png" alt="Profile 2" />
+                    <img src="profile2.png" alt="Profil 2 - Tim ETNOSATEK" />
                 </div>
                 <div class="img-section profile-neon-border">
-                    <img src="profile3.png" alt="Profile 3" />
+                    <img src="profile3.png" alt="Profil 3 - Pembimbing dan Sekolah" />
                 </div>
             </div>
             <div style="margin-top: 40px; width: 100%;">
@@ -214,9 +269,9 @@
         </div>
         
         <!-- ===== HALAMAN CARA MAIN ===== -->
-        <div id="howtoplay" class="halaman hero-other">
+        <div id="howtoplay" class="halaman hero-other" role="region" aria-label="Cara main">
             <h2>Cara Main</h2>
-            <a class="btn-spring" href="https://etnosatek-nazwa.vercel.app" target="_blank">Mulai Sekarang →</a>
+            <a class="btn-spring" href="https://etnosatek-nazwa.vercel.app" target="_blank" aria-label="Mulai main game ETNOSATEK">Mulai Sekarang →</a>
             <div style="margin-top: 30px; width: 100%;">
                 <div class="img-section footer-img">
                     <img src="page3.png" alt="Footer ETNOSATEK" />
@@ -233,15 +288,18 @@
             style="position:fixed; bottom:20px; right:20px; z-index:999999; width:60px; height:60px; border-radius:50%; background:#4a6fa5; border:4px solid white; font-size:28px; color:white; cursor:pointer; box-shadow:0 4px 20px rgba(0,0,0,0.5); display:flex; justify-content:center; align-items:center; transition:0.2s;"
             onclick="toggleChat()"
             onmouseover="this.style.transform='scale(1.1)'"
-            onmouseout="this.style.transform='scale(1)'">
+            onmouseout="this.style.transform='scale(1)'"
+            aria-label="Buka asisten AI ETNOSATEK">
         🤖
     </button>
 
     <div id="ai-chat-window"
-         style="position:fixed; bottom:90px; right:20px; z-index:999998; width:340px; max-width:90vw; height:420px; background:#fff; border-radius:20px; box-shadow:0 10px 40px rgba(0,0,0,0.3); display:none; flex-direction:column; overflow:hidden; border:1px solid #ddd;">
+         style="position:fixed; bottom:90px; right:20px; z-index:999998; width:340px; max-width:90vw; height:420px; background:#fff; border-radius:20px; box-shadow:0 10px 40px rgba(0,0,0,0.3); display:none; flex-direction:column; overflow:hidden; border:1px solid #ddd;"
+         role="dialog"
+         aria-label="Jendela chat asisten ETNOSATEK">
         <div id="ai-chat-header" style="background:#4a6fa5; color:white; padding:14px 16px; font-weight:bold; display:flex; justify-content:space-between; align-items:center;">
             <span>🤖 Asisten ETNOSATEK</span>
-            <button onclick="toggleChat()" style="background:transparent; border:none; color:white; font-size:20px; cursor:pointer;">✕</button>
+            <button onclick="toggleChat()" style="background:transparent; border:none; color:white; font-size:20px; cursor:pointer;" aria-label="Tutup chat">✕</button>
         </div>
         <div id="ai-chat-messages" style="flex:1; padding:12px; overflow-y:auto; background:#f9f9f9; display:flex; flex-direction:column; gap:8px;">
             <div class="msg-bot" style="align-self:flex-start; background:#eee; padding:10px 14px; border-radius:16px 16px 16px 0; max-width:85%; font-size:14px; color:#333; line-height:1.5;">
@@ -249,8 +307,8 @@
             </div>
         </div>
         <div id="ai-chat-input-area" style="padding:10px; border-top:1px solid #ddd; display:flex; gap:8px; background:#fff;">
-            <input type="text" id="ai-chat-input" placeholder="Tulis pertanyaan..." style="flex:1; padding:10px; border:1px solid #ddd; border-radius:30px; outline:none;" onkeypress="if(event.key==='Enter') sendChatGemini()">
-            <button id="ai-chat-send" onclick="sendChatGemini()" style="background:#4a6fa5; color:white; border:none; padding:8px 18px; border-radius:30px; cursor:pointer; font-weight:bold;">Kirim</button>
+            <input type="text" id="ai-chat-input" placeholder="Tulis pertanyaan..." style="flex:1; padding:10px; border:1px solid #ddd; border-radius:30px; outline:none;" aria-label="Ketik pertanyaan untuk AI" onkeypress="if(event.key==='Enter') sendChatGemini()">
+            <button id="ai-chat-send" onclick="sendChatGemini()" style="background:#4a6fa5; color:white; border:none; padding:8px 18px; border-radius:30px; cursor:pointer; font-weight:bold;" aria-label="Kirim pertanyaan">Kirim</button>
         </div>
     </div>
 
