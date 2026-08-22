@@ -4,13 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- ===== TITLE (WAJIB UNIK) ===== -->
+    <!-- ===== TITLE ===== -->
     <title>ETNOSATEK – Game Edukasi Literasi Digital & Budaya Nusantara</title>
 
-    <!-- ===== SEO META ===== -->
-    <meta name="description" content="ETNOSATEK adalah game edukasi interaktif tentang Prasasti Kedukan Bukit, sistem biner, navigasi bintang, dan literasi digital. Mainkan sekarang!" />
-    <meta name="keywords" content="ETNOSATEK, game edukasi, literasi digital, prasasti, kedukan bukit, sistem biner, navigasi bintang, hoaks, phishing" />
+    <!-- ===== SEO META (DIPERBAIKI AGAR LEBIH NATURAL) ===== -->
+    <meta name="description" content="ETNOSATEK adalah game edukasi interaktif yang mengajak kamu menjelajahi Prasasti Kedukan Bukit, sistem biner, navigasi bintang, dan literasi digital. Cocok untuk pelajar SMP/SMA yang ingin belajar sambil bermain!" />
+    <meta name="keywords" content="ETNOSATEK, game edukasi, literasi digital, prasasti, kedukan bukit, sistem biner, navigasi bintang, hoaks, phishing, cyberbullying" />
     <meta name="author" content="Nazwa Ananda Devina" />
+    <meta name="publisher" content="ETNOSATEK" />
+    <meta name="copyright" content="ETNOSATEK 2026" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://fzzn8273.github.io/etnosatek/" />
 
@@ -37,11 +39,12 @@
     <meta name="twitter:description" content="Belajar prasasti, biner, navigasi bintang, dan literasi digital dengan cara seru! Mainkan sekarang." />
     <meta name="twitter:image" content="https://fzzn8273.github.io/etnosatek/page1.png" />
     <meta name="twitter:image:alt" content="Logo ETNOSATEK - Game Edukasi" />
+    <meta name="twitter:site" content="@fzzn8273" />
 
-    <!-- ===== THEME COLOR UNTUK MOBILE ===== -->
+    <!-- ===== THEME COLOR ===== -->
     <meta name="theme-color" content="#4a6fa5" />
 
-    <!-- ===== STRUCTURED DATA (JSON-LD) ===== -->
+    <!-- ===== STRUCTURED DATA (JSON-LD) LEBIH DETAIL ===== -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -53,11 +56,21 @@
       "operatingSystem": "Web",
       "author": {
         "@type": "Person",
-        "name": "Nazwa Ananda Devina"
+        "name": "Nazwa Ananda Devina",
+        "url": "https://github.com/fzzn8273"
       },
+      "publisher": {
+        "@type": "Organization",
+        "name": "ETNOSATEK"
+      },
+      "datePublished": "2026-08-21",
       "audience": {
         "@type": "Audience",
         "audienceType": "Pelajar SMP/SMA"
+      },
+      "about": {
+        "@type": "Thing",
+        "name": "Edukasi Digital & Budaya Nusantara"
       }
     }
     </script>
@@ -66,7 +79,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
-    <!-- ===== STYLE (TIDAK DIUBAH) ===== -->
+    <!-- ===== STYLE ===== -->
     <style>
         /* ===== OKLCH PALET ===== */
         :root {
@@ -108,7 +121,6 @@
             position: relative;
         }
 
-        /* ===== FLOATING HAMBURGER ===== */
         .floating-header {
             position: fixed;
             top: 20px;
@@ -203,6 +215,27 @@
         }
         .btn-spring:hover { transform: scale(1.05); }
 
+        /* ===== INTRO TEKS UNTUK SEO (BIAR GOOGLE PUNYA KONTEN) ===== */
+        .seo-intro {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            margin: 20px 0;
+            color: var(--putih-base);
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        .seo-intro h1 {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+        .seo-intro p {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
         /* RESPONSIVE */
         @media (max-width: 600px) {
             body { padding: 10px; }
@@ -212,6 +245,8 @@
             .divider-section { margin: 3vh 0; gap: 2vh; }
             .img-section { border-radius: 50px; }
             .profile-neon-border { border-radius: 50px; }
+            .seo-intro h1 { font-size: 22px; }
+            .seo-intro p { font-size: 16px; }
         }
     </style>
 </head>
@@ -232,6 +267,18 @@
 
         <!-- ===== WRAPPER HOME ===== -->
         <div id="home" class="home-wrapper">
+
+            <!-- ===== INTRO TEKS UNTUK GOOGLE (BIAR GOOGLE PUNYA KONTEN) ===== -->
+            <div class="seo-intro">
+                <h1>ETNOSATEK – Game Edukasi Budaya & Teknologi Nusantara</h1>
+                <p>
+                    ETNOSATEK adalah singkatan dari <strong>Etnomateriaku Nusantara untuk Teknologi</strong>. 
+                    Sebuah game petualangan interaktif yang dirancang untuk membangun pemahaman konsep teknologi 
+                    modern melalui pendekatan budaya Nusantara. Kamu akan menjelajahi Prasasti Kedukan Bukit, 
+                    mempelajari sistem biner, navigasi bintang, dan literasi digital dalam satu petualangan seru!
+                </p>
+            </div>
+
             <div class="img-section header-img">
                 <img src="page1.png" alt="Header ETNOSATEK - Game Edukasi Budaya Nusantara" />
             </div>
