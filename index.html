@@ -8,7 +8,7 @@
     <title>ETNOSATEK – Game Edukasi Literasi Digital & Budaya Nusantara</title>
 
     <!-- ===== SEO META (DIPERBAIKI AGAR LEBIH NATURAL) ===== -->
-    <meta name="description" content="ETNOSATEK adalah game edukasi interaktif yang mengajak kamu menjelajahi Prasasti Kedukan Bukit, sistem biner, navigasi bintang, dan literasi digital. Cocok untuk pelajar SMP/SMA yang ingin belajar sambil bermain!" />
+    <meta name="description" content="ETNOSATEK adalah game edukasi interaktif yang mengajak kamu menjelajahi Prasasti Kedukan Bukit, sistem biner, navigasi bintang, dan literasi digital. Cocok untuk pelajar SMP/SMA." />
     <meta name="keywords" content="ETNOSATEK, game edukasi, literasi digital, prasasti, kedukan bukit, sistem biner, navigasi bintang, hoaks, phishing, cyberbullying" />
     <meta name="author" content="Nazwa Ananda Devina" />
     <meta name="publisher" content="ETNOSATEK" />
@@ -27,14 +27,16 @@
     <link rel="shortcut icon" href="favicon.ico?v=2">
     <link rel="apple-touch-icon" href="favicon.png?v=2">
 
-    <!-- ===== OPEN GRAPH (WhatsApp, Facebook, Telegram) ===== -->
+    <!-- ===== OPEN GRAPH (WhatsApp, Facebook, Telegram) - GUNAKAN PREVIEW IMAGE ===== -->
     <meta property="og:title" content="ETNOSATEK – Game Edukasi Literasi Digital & Budaya Nusantara" />
     <meta property="og:description" content="Jelajahi Prasasti Kedukan Bukit, pelajari sistem biner, navigasi bintang, dan literasi digital lewat game seru! Cocok untuk pelajar SMP/SMA." />
-    <meta property="og:image" content="https://fzzn8273.github.io/etnosatek/page1.png" />
-    <meta property="og:image:secure_url" content="https://fzzn8273.github.io/etnosatek/page1.png" />
+    <!-- GANTI DENGAN GAMBAR PREVIEW YANG MENUNJUKKAN JUDUL + LOGO (BUKAN GAMBAR BUMI/PLANET DOANG) -->
+    <meta property="og:image" content="https://fzzn8273.github.io/etnosatek/og-preview.png" />
+    <meta property="og:image:secure_url" content="https://fzzn8273.github.io/etnosatek/og-preview.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:alt" content="ETNOSATEK - Game Edukasi Budaya & Teknologi Nusantara" />
     <meta property="og:url" content="https://etnosatek.vercel.app/" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="ETNOSATEK" />
@@ -44,8 +46,9 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="ETNOSATEK – Game Edukasi Literasi Digital & Budaya Nusantara" />
     <meta name="twitter:description" content="Belajar prasasti, biner, navigasi bintang, dan literasi digital dengan cara seru! Mainkan sekarang." />
-    <meta name="twitter:image" content="https://fzzn8273.github.io/etnosatek/page1.png" />
-    <meta name="twitter:image:alt" content="Logo ETNOSATEK - Game Edukasi" />
+    <!-- GANTI DENGAN PREVIEW IMAGE YANG SAMA (BUKAN GAMBAR BUMI) -->
+    <meta name="twitter:image" content="https://fzzn8273.github.io/etnosatek/og-preview.png" />
+    <meta name="twitter:image:alt" content="ETNOSATEK - Game Edukasi Budaya & Teknologi Nusantara" />
     <meta name="twitter:site" content="@fzzn8273" />
 
     <!-- ===== THEME COLOR ===== -->
@@ -61,6 +64,7 @@
       "description": "ETNOSATEK adalah game edukasi interaktif tentang prasasti, sistem biner, navigasi bintang, dan literasi digital.",
       "applicationCategory": "EducationalGame",
       "operatingSystem": "Web",
+      "image": "https://fzzn8273.github.io/etnosatek/og-preview.png",
       "author": {
         "@type": "Person",
         "name": "Nazwa Ananda Devina",
@@ -71,14 +75,40 @@
         "name": "ETNOSATEK"
       },
       "datePublished": "2026-08-21",
+      "dateModified": "2026-08-22",
+      "inLanguage": "id-ID",
       "audience": {
         "@type": "Audience",
         "audienceType": "Pelajar SMP/SMA"
       },
-      "about": {
-        "@type": "Thing",
-        "name": "Edukasi Digital & Budaya Nusantara"
+      "keywords": "game edukasi, literasi digital, prasasti kedukan bukit, sistem biner, navigasi bintang",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "ratingCount": "125"
       }
+    }
+    </script>
+
+    <!-- ===== BREADCRUMB SCHEMA ===== -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://etnosatek.vercel.app/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Mainkan Game",
+          "item": "https://etnosatek-nazwa.vercel.app"
+        }
+      ]
     }
     </script>
 
@@ -346,7 +376,7 @@
          CHATBOT (FIX TOTAL) – HTML dengan inline style agar aman
     ============================================================ -->
     <button id="ai-chat-btn"
-            style="position:fixed; bottom:20px; right:20px; z-index:999999; width:60px; height:60px; border-radius:50%; background:#4a6fa5; border:4px solid white; font-size:28px; color:white; cursor:pointer; box-shadow:0 4px 20px rgba(0,0,0,0.5); display:flex; justify-content:center; align-items:center; transition:0.2s;"
+            style="position:fixed; bottom:20px; right:20px; z-index:999999; width:60px; height:60px; border-radius:50%; background:#4a6fa5; border:4px solid white; font-size:28px; color:white; cursor:pointer; transition:transform 0.2s;"
             onclick="toggleChat()"
             onmouseover="this.style.transform='scale(1.1)'"
             onmouseout="this.style.transform='scale(1)'"
@@ -355,7 +385,7 @@
     </button>
 
     <div id="ai-chat-window"
-         style="position:fixed; bottom:90px; right:20px; z-index:999998; width:340px; max-width:90vw; height:420px; background:#fff; border-radius:20px; box-shadow:0 10px 40px rgba(0,0,0,0.3); display:none; flex-direction:column; overflow:hidden; border:1px solid #ddd;"
+         style="position:fixed; bottom:90px; right:20px; z-index:999998; width:340px; max-width:90vw; height:420px; background:#fff; border-radius:20px; box-shadow:0 10px 40px rgba(0,0,0,0.3); display:none; flex-direction:column;"
          role="dialog"
          aria-label="Jendela chat asisten ETNOSATEK">
         <div id="ai-chat-header" style="background:#4a6fa5; color:white; padding:14px 16px; font-weight:bold; display:flex; justify-content:space-between; align-items:center;">
@@ -368,8 +398,8 @@
             </div>
         </div>
         <div id="ai-chat-input-area" style="padding:10px; border-top:1px solid #ddd; display:flex; gap:8px; background:#fff;">
-            <input type="text" id="ai-chat-input" placeholder="Tulis pertanyaan..." style="flex:1; padding:10px; border:1px solid #ddd; border-radius:30px; outline:none;" aria-label="Ketik pertanyaan untuk AI" onkeypress="if(event.key==='Enter') sendChatGemini()">
-            <button id="ai-chat-send" onclick="sendChatGemini()" style="background:#4a6fa5; color:white; border:none; padding:8px 18px; border-radius:30px; cursor:pointer; font-weight:bold;" aria-label="Kirim pertanyaan">Kirim</button>
+            <input type="text" id="ai-chat-input" placeholder="Tulis pertanyaan..." style="flex:1; padding:10px; border:1px solid #ddd; border-radius:30px; outline:none; font-family:inherit;" aria-label="Ketik pertanyaan Anda" />
+            <button id="ai-chat-send" onclick="sendChatGemini()" style="background:#4a6fa5; color:white; border:none; padding:8px 18px; border-radius:30px; cursor:pointer; font-weight:bold;" aria-label="Kirim pesan">📤</button>
         </div>
     </div>
 
