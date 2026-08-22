@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://fzzn8273.github.io/etnosatek/sitemap.xml
